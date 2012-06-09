@@ -4,8 +4,8 @@ require File.expand_path('../lib/nwiki/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ['niku']
   gem.email         = ['niku@niku.name']
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Write a gem description}
+  gem.summary       = %q{Write a gem summary}
   gem.homepage      = ''
 
   gem.files         = `git ls-files`.split($\)
