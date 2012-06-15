@@ -38,6 +38,7 @@ module Nwiki
       it { subject.should match %r!\bb\b! }
     end
 
+    pending 'not implement yet' do
     describe 'GET /日本語ディレクトリ/' do
       let(:path) { URI.encode '/日本語ディレクトリ/' }
 
@@ -51,6 +52,7 @@ module Nwiki
       it { subject.should be_ok }
       it { subject.should match %r!<h2[^>]*>お前だったのか</h2>! }
       it { subject.should match %r!<h3[^>]*>気づかなかったな</h3>! }
+    end
     end
   end
 end
