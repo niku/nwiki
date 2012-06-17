@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe Nwiki do
- it{ fail 'not implement yet.' }
+ it { pending 'not implement yet.' }
 end
