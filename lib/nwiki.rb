@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'nwiki/version'
+require 'nwiki/core'
 
 require 'rss'
 require "grit"

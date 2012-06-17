@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Nwiki::VERSION
 
+  gem.add_dependency('gollum')
   gem.add_dependency('rack')
   gem.add_dependency('sinatra')
   gem.add_dependency('org-ruby')
