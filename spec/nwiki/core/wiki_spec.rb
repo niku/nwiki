@@ -14,6 +14,9 @@ module Nwiki
         it { subject.find('/日本語ディレクトリ/わたしだ').should_not be_nil }
       end
 
+      describe '#name' do
+        it { subject.name.should eq 'ヽ（´・肉・｀）ノログ' }
+      end
     end
   end
 end
