@@ -1,3 +1,5 @@
+require 'erb'
+
 module Nwiki
   module Frontend
     class App
@@ -10,10 +12,26 @@ module Nwiki
         path_info = env["PATH_INFO"]
         page = @wiki.find path_info
         if page
-          [200, {"Content-Type" => "text/html; charset=#{page.encoding}"}, [Orgmode::Parser.new(page.doc, 1).to_html]]
+          [200, {"Content-Type" => "text/html; charset=#{page.encoding}"}, [html(page)]]
         else
           [404, {"Content-Type" => "text/plane"}, ["not found."]]
         end
+      end
+
+      def html page
+        erb = ERB.new <<EOS
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title><%= page.title %> - <%= @wiki.name %></title>
+</head>
+<body>
+<h1><%= @wiki.name %></h1>
+<%= page.to_html %>
+</body>
+</html>
+EOS
+        erb.result(binding).force_encoding(page.encoding)
       end
     end
   end
