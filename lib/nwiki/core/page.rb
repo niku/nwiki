@@ -4,7 +4,12 @@ module Nwiki
       attr_reader :doc
 
       def initialize doc
+        raise 'doc is empty or nil' unless doc
         @doc = doc
+      end
+
+      def encoding
+        @doc.encoding
       end
 
       def == other
