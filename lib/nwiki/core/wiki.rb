@@ -21,7 +21,10 @@ module Nwiki
         blob_entry = @access
           .tree('master')
           .find { |e| canonicalized_path == e.path.sub(/\.org$/){ '' } }
-        Page.new(blob_entry.blob(@access.repo).data) if blob_entry
+        return nil unless blob_entry
+        byte_string = blob_entry.blob(@access.repo).data
+        byte_string.force_encoding(self.class.repo_filename_encoding)
+        Page.new(byte_string)
       end
 
       def name

@@ -58,8 +58,8 @@ module Nwiki
         let(:path) { URI.encode '/日本語ディレクトリ/わたしだ' }
 
         it { subject.should be_ok }
-        it { subject.body.force_encoding(Encoding::UTF_8).should match %r!<h2[^>]*>お前だったのか</h2>! }
-        it { subject.body.force_encoding(Encoding::UTF_8).should match %r!<h3[^>]*>気づかなかったな</h3>! }
+        it { subject.body.should match %r!<h2[^>]*>お前だったのか</h2>! }
+        it { subject.body.should match %r!<h3[^>]*>気づかなかったな</h3>! }
       end
     end
   end
