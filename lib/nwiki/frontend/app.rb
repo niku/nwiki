@@ -11,10 +11,13 @@ module Nwiki
       def call env
         path_info = env["PATH_INFO"]
         page = @wiki.find path_info
-        if page
+        case page
+        when Core::Page
           [200, {"Content-Type" => "text/html; charset=#{page.encoding}"}, [html(page)]]
-        else
+        when nil
           [404, {"Content-Type" => "text/plane"}, ["not found."]]
+        else
+          # TODO raw file
         end
       end
 
