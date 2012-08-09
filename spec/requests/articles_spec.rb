@@ -35,6 +35,12 @@ module Nwiki
         end
       end
 
+      describe 'GET /icon.png' do
+        let(:path) { '/icon.png' }
+        it { subject.should be_ok }
+        it { subject['Content-Type'].should eq 'image/png' }
+      end
+
       describe 'GET /1/2/' do
         let(:path) { '/1/2/' }
 

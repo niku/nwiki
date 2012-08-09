@@ -14,10 +14,10 @@ module Nwiki
         case page
         when Core::Page
           [200, {"Content-Type" => "text/html; charset=#{page.encoding}"}, [html(page)]]
-        when nil
-          [404, {"Content-Type" => "text/plane"}, ["not found."]]
+        when Core::File
+          [200, {"Content-Type" => "image/png"}, [page.data]]
         else
-          # TODO raw file
+          [404, {"Content-Type" => "text/plane"}, ["not found."]]
         end
       end
 
