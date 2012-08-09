@@ -9,6 +9,7 @@ module Nwiki
 
       describe '#find' do
         it { subject.find('/foo').should eq Page.new("Foo", "* Foo\n** Bar\n[[icon.png]]\n", Wiki.parser) }
+        it { subject.find('/icon.png').should be_kind_of File }
         it { subject.find('/not_exist_page').should be_nil }
         it { subject.find('/1/2/a').should_not be_nil }
         it { subject.find('/日本語ディレクトリ/わたしだ').should_not be_nil }

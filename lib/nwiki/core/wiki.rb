@@ -27,8 +27,12 @@ module Nwiki
           .find { |e| canonicalized_path == e.path.sub(/\.org$/){ '' } }
         return nil unless blob_entry
         byte_string = blob_entry.blob(@access.repo).data
-        byte_string.force_encoding(self.class.repo_filename_encoding)
-        Page.new(::File.basename(blob_entry.name, '.org'), byte_string, self.class.parser)
+        if blob_entry.name =~ /\.org$/
+          byte_string.force_encoding(self.class.repo_filename_encoding)
+          Page.new(::File.basename(blob_entry.name, '.org'), byte_string, self.class.parser)
+        else
+          File.new(blob_entry.name, byte_string)
+        end
       end
 
       def name
