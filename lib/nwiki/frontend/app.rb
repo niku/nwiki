@@ -15,7 +15,7 @@ module Nwiki
         when Core::Page
           [200, {"Content-Type" => "text/html; charset=#{page.encoding}"}, [html(page)]]
         when Core::File
-          [200, {"Content-Type" => "image/png"}, [page.data]]
+          [200, {"Content-Type" => page.content_type}, [page.data]]
         else
           [404, {"Content-Type" => "text/plane"}, ["not found."]]
         end
