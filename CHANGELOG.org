@@ -1,3 +1,5 @@
 * CHANGELOG
+** 0.0.3
+ - Nothing to change
 ** 0.0.2
  - [feature] be able to handle raw file (raw file means besides org file)
