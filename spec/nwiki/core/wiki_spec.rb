@@ -7,6 +7,11 @@ module Nwiki
       let(:path) { 'spec/examples/sample.git' }
       subject { described_class.new(path) }
 
+      describe '.canonicalize_path' do
+        it { described_class.canonicalize_path('/foo').should eq 'foo' }
+        it { described_class.canonicalize_path('/日本語').should eq '日本語' }
+      end
+
       describe '#find' do
         it { subject.find('/foo').should eq Page.new("Foo", "* Foo\n** Bar\n[[icon.png]]\n", Wiki.parser) }
         it { subject.find('/icon.png').should be_kind_of File }
