@@ -18,10 +18,10 @@ module Nwiki
         let(:path) { '/' }
 
         pending do 'not implement yet'
-        it { subject.should be_ok }
-        it { subject.should match %r!\bfoo\b! }
-        it { subject.should match %r!\b1\b! }
-        it { subject.should match %r!\b日本語ディレクトリ\b! }
+          it { subject.should be_ok }
+          it { subject.should match %r!\bfoo\b! }
+          it { subject.should match %r!\b1\b! }
+          it { subject.should match %r!\b日本語ディレクトリ\b! }
         end
       end
 
@@ -29,9 +29,9 @@ module Nwiki
         let(:path) { '/foo' }
 
         pending do 'not implement yet'
-        it { subject.should be_ok }
-        it { subject.should match %r!<h2[^>]*>Foo</h2>! }
-        it { subject.should match %r!<h3[^>]*>Bar</h3>! }
+          it { subject.should be_ok }
+          it { subject.should match %r!<h2[^>]*>Foo</h2>! }
+          it { subject.should match %r!<h3[^>]*>Bar</h3>! }
         end
       end
 
@@ -45,9 +45,9 @@ module Nwiki
         let(:path) { '/1/2/' }
 
         pending do 'not implement yet'
-        it { subject.should be_ok }
-        it { subject.should match %r!\ba\b! }
-        it { subject.should match %r!\bb\b! }
+          it { subject.should be_ok }
+          it { subject.should match %r!\ba\b! }
+          it { subject.should match %r!\bb\b! }
         end
       end
 
@@ -55,8 +55,8 @@ module Nwiki
         let(:path) { URI.encode '/日本語ディレクトリ/' }
 
         pending do 'not implement yet'
-        it { subject.should be_ok }
-        it { subject.should match %r!<h2[^>]*>わたしだ</h2>! }
+          it { subject.should be_ok }
+          it { subject.should match %r!<h2[^>]*>わたしだ</h2>! }
         end
       end
 
