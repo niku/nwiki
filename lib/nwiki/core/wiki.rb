@@ -22,9 +22,17 @@ module Nwiki
 
       def find path
         canonicalized_path = self.class.canonicalize_path path
+        if canonicalized_path == ''
+          find_directory(canonicalized_path)
+        else
+          find_page_or_file(canonicalized_path)
+        end
+      end
+
+      def find_page_or_file path
         blob_entry = @access
           .tree('master')
-          .find { |e| canonicalized_path == e.path.sub(/\.org$/){ '' } }
+          .find { |e| path == e.path.sub(/\.org$/){ '' } }
         return nil unless blob_entry
         byte_string = blob_entry.blob(@access.repo).data
         if blob_entry.name =~ /\.org$/
@@ -33,6 +41,11 @@ module Nwiki
         else
           File.new(blob_entry.name, byte_string)
         end
+      end
+
+      def find_directory path
+        sha = @access.tree('master').map(&:path)
+        Directory.new(sha)
       end
 
       def name
