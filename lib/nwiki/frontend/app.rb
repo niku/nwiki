@@ -12,7 +12,7 @@ module Nwiki
         path_info = env["PATH_INFO"]
         page = @wiki.find path_info
         case page
-        when Core::Page
+        when Core::Page, Core::Directory
           [200, {"Content-Type" => "text/html; charset=#{page.encoding}"}, [html(page)]]
         when Core::File
           [200, {"Content-Type" => page.content_type}, [page.data]]

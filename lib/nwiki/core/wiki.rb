@@ -44,8 +44,9 @@ module Nwiki
       end
 
       def find_directory path
-        sha = @access.tree('master').map(&:path)
-        Directory.new(sha)
+        sha = @access.tree('master')
+        Directory.encoding = self.class.repo_filename_encoding
+        Directory.new(path, sha.map(&:path))
       end
 
       def name
