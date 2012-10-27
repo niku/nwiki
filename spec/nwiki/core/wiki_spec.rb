@@ -7,6 +7,10 @@ module Nwiki
       let(:path) { 'spec/examples/sample.git' }
       subject { described_class.new(path) }
 
+      describe '.parser' do
+        it { described_class.parser.should eq Orgmode::Parser }
+      end
+
       describe '.canonicalize_path' do
         it { described_class.canonicalize_path('/foo/bar/').should eq 'foo/bar/' }
         it { described_class.canonicalize_path('/%E6%97%A5%E6%9C%AC%E8%AA%9E').should eq '日本語' }
@@ -29,10 +33,6 @@ module Nwiki
 
       describe '#name' do
         it { subject.name.should eq 'ヽ（´・肉・｀）ノログ' }
-      end
-
-      describe '.parser' do
-        it { described_class.parser.should eq Orgmode::Parser }
       end
 
     end
