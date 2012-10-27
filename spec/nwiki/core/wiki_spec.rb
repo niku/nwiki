@@ -30,6 +30,11 @@ module Nwiki
       describe '#name' do
         it { subject.name.should eq 'ヽ（´・肉・｀）ノログ' }
       end
+
+      describe '.parser' do
+        it { described_class.parser.should eq Orgmode::Parser }
+      end
+
     end
   end
 end
