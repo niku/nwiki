@@ -8,8 +8,8 @@ module Nwiki
       subject { described_class.new(path) }
 
       describe '.canonicalize_path' do
-        it { described_class.canonicalize_path('/foo').should eq 'foo' }
-        it { described_class.canonicalize_path('/日本語').should eq '日本語' }
+        it { described_class.canonicalize_path('/foo/bar/').should eq 'foo/bar/' }
+        it { described_class.canonicalize_path('/%E6%97%A5%E6%9C%AC%E8%AA%9E').should eq '日本語' }
       end
 
       describe '#find' do
