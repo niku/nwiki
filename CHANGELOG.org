@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.0.5
+ - Internal change(move spec)
 ** 0.0.4
  - [feature] view list at root directory
 ** 0.0.3
