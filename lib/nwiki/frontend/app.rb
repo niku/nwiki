@@ -27,6 +27,9 @@ module Nwiki
 <html>
 <head>
   <title><%= page.title %> - <%= @wiki.name %></title>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h1><%= @wiki.name %></h1>
