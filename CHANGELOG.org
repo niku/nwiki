@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.0.6
+ - [feature] Introduce twitter bootstrap
 ** 0.0.5
  - Internal change(move spec)
 ** 0.0.4
