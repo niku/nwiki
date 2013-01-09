@@ -4,11 +4,13 @@ module Nwiki
   module Frontend
     class App
       def initialize git_repo_path
-        @html = Html.new git_repo_path
+        @builder = Rack::Builder.new {
+          run Html.new git_repo_path
+        }
       end
 
       def call env
-        @html.call env
+        @builder.call env
       end
     end
 
