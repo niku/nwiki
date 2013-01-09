@@ -7,6 +7,4 @@ if ENV['RACK_ENV'] == "development"
   use Rack::Lint
 end
 
-map '/articles' do
-  run Nwiki::Frontend::App.new 'spec/examples/sample.git'
-end
+run Nwiki::Frontend::App.new 'spec/examples/sample.git'

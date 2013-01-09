@@ -14,8 +14,8 @@ module Nwiki
         get path
       end
 
-      describe 'GET /' do
-        let(:path) { '/' }
+      describe 'GET /articles' do
+        let(:path) { '/articles/' }
 
         it { subject.should be_ok }
         it { subject.should match %r!\bfoo\b! }
@@ -23,22 +23,22 @@ module Nwiki
         it { subject.should match %r!\b日本語ディレクトリ\b! }
       end
 
-      describe 'GET /foo' do
-        let(:path) { '/foo' }
+      describe 'GET /articles/foo' do
+        let(:path) { '/articles/foo' }
 
         it { subject.should be_ok }
         it { subject.should match %r!<h2[^>]*>Foo</h2>! }
         it { subject.should match %r!<h3[^>]*>Bar</h3>! }
       end
 
-      describe 'GET /icon.png' do
-        let(:path) { '/icon.png' }
+      describe 'GET /articles/icon.png' do
+        let(:path) { '/articles/icon.png' }
         it { subject.should be_ok }
         it { subject['Content-Type'].should eq 'image/png' }
       end
 
-      describe 'GET /1/2/' do
-        let(:path) { '/1/2/' }
+      describe 'GET /articles/1/2/' do
+        let(:path) { '/articles/1/2/' }
 
         pending do 'not implement yet'
           it { subject.should be_ok }
@@ -47,8 +47,8 @@ module Nwiki
         end
       end
 
-      describe 'GET /日本語ディレクトリ/' do
-        let(:path) { URI.encode '/日本語ディレクトリ/' }
+      describe 'GET /articles/日本語ディレクトリ/' do
+        let(:path) { URI.encode '/articles/日本語ディレクトリ/' }
 
         pending do 'not implement yet'
           it { subject.should be_ok }
@@ -56,8 +56,8 @@ module Nwiki
         end
       end
 
-      describe 'GET /日本語ディレクトリ/わたしだ' do
-        let(:path) { URI.encode '/日本語ディレクトリ/わたしだ' }
+      describe 'GET /articles/日本語ディレクトリ/わたしだ' do
+        let(:path) { URI.encode '/articles/日本語ディレクトリ/わたしだ' }
 
         it { subject.should be_ok }
         it { subject.body.should match %r!<h2[^>]*>お前だったのか</h2>! }
