@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.0.7
+ - Internal change(rack middleware into app)
 ** 0.0.6
  - [feature] Introduce twitter bootstrap
 ** 0.0.5
