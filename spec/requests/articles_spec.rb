@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'spec_helper'
+require 'rss'
 
 module Nwiki
   module Frontend
@@ -28,6 +29,7 @@ module Nwiki
 
         it { subject.should be_ok }
         it { subject['Content-Type'].should eq 'application/atom+xml; charset=UTF-8' }
+        it { expect { RSS::Parser.parse(subject.body) }.to_not raise_error }
       end
 
 
