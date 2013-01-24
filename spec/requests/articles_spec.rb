@@ -23,6 +23,13 @@ module Nwiki
         it { subject.should match %r!\b日本語ディレクトリ\b! }
       end
 
+      describe 'GET /articles.xml' do
+        let(:path) { '/articles.xml' }
+
+        it { subject.should be_ok }
+      end
+
+
       describe 'GET /articles/foo' do
         let(:path) { '/articles/foo' }
 
