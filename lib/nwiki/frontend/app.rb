@@ -6,7 +6,7 @@ module Nwiki
       def initialize git_repo_path
         @builder = Rack::Builder.new {
           map '/articles.xml' do
-            run ->(env) { [200, {}, ['ok']] }
+            run ->(env) { [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, ['ok']] }
           end
           map '/articles' do
             run Html.new git_repo_path

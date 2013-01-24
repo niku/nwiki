@@ -27,6 +27,7 @@ module Nwiki
         let(:path) { '/articles.xml' }
 
         it { subject.should be_ok }
+        it { subject['Content-Type'].should eq 'application/atom+xml; charset=UTF-8' }
       end
 
 
