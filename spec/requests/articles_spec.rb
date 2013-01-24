@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 require 'spec_helper'
-require 'rss'
 
 module Nwiki
   module Frontend
@@ -33,6 +32,7 @@ module Nwiki
         describe 'response body' do
           subject { RSS::Parser.parse(last_response.body) }
           it { expect { subject }.to_not raise_error }
+          it { should_not be_nil }
         end
 
       end

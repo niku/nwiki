@@ -1,4 +1,5 @@
 require 'erb'
+require 'rss'
 
 module Nwiki
   module Frontend
@@ -6,7 +7,18 @@ module Nwiki
       def initialize git_repo_path
         @builder = Rack::Builder.new {
           map '/articles.xml' do
-            run ->(env) { [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, ['ok']] }
+            xml = RSS::Maker.make('atom') { |maker|
+              maker.channel.about = "http://example.com/atom.xml"
+              maker.channel.title = "Example"
+              maker.channel.description = "Example Site"
+              maker.channel.link = "http://example.com/"
+
+              maker.channel.author = "Bob"
+              maker.channel.date = Time.now
+
+              maker.items.do_sort = true
+            }
+            run ->(env) { [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, [xml]] }
           end
           map '/articles' do
             run Html.new git_repo_path
