@@ -29,7 +29,11 @@ module Nwiki
 
         it { subject.should be_ok }
         it { subject['Content-Type'].should eq 'application/atom+xml; charset=UTF-8' }
+
+        describe 'response body' do
         it { expect { RSS::Parser.parse(subject.body) }.to_not raise_error }
+        end
+
       end
 
 
