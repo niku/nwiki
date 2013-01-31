@@ -7,18 +7,18 @@ module Nwiki
       def initialize git_repo_path
         @builder = Rack::Builder.new {
           map '/articles.xml' do
-            xml = RSS::Maker.make('atom') { |maker|
-              maker.channel.about = "http://example.com/atom.xml"
+
+            run ->(env) { [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, [
+            RSS::Maker.make('atom') { |maker|
               maker.channel.title = "Example"
               maker.channel.description = "Example Site"
-              maker.channel.link = "http://example.com/"
+              maker.channel.link = Rack::Request.new(env).url
 
               maker.channel.author = "Bob"
               maker.channel.date = Time.now
-
-              maker.items.do_sort = true
-            }
-            run ->(env) { [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, [xml]] }
+              maker.channel.id = '1'
+            }.to_s
+                ]] }
           end
           map '/articles' do
             run Html.new git_repo_path
@@ -28,6 +28,17 @@ module Nwiki
 
       def call env
         @builder.call env
+      end
+    end
+
+    class Feed
+      def initialize git_repo_path
+        @wiki = Nwiki::Core::Wiki.new git_repo_path
+        raise unless @wiki.exist?
+      end
+
+      def call env
+        [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, ['ok']]
       end
     end
 

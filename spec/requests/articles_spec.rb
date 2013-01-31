@@ -33,6 +33,7 @@ module Nwiki
           subject { RSS::Parser.parse(last_response.body) }
           it { expect { subject }.to_not raise_error }
           it { should_not be_nil }
+          it { subject.link.href.should eq 'http://example.org/articles.xml' }
         end
 
       end
