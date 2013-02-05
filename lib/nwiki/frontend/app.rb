@@ -7,18 +7,23 @@ module Nwiki
       def initialize git_repo_path
         @builder = Rack::Builder.new {
           map '/articles.xml' do
+            run ->(env) {
+              [
+                200,
+                { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
+                [
+                  RSS::Maker.make('atom') { |maker|
+                    maker.channel.title = "Example"
+                    maker.channel.description = "Example Site"
+                    maker.channel.link = Rack::Request.new(env).url
 
-            run ->(env) { [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, [
-            RSS::Maker.make('atom') { |maker|
-              maker.channel.title = "Example"
-              maker.channel.description = "Example Site"
-              maker.channel.link = Rack::Request.new(env).url
-
-              maker.channel.author = "Bob"
-              maker.channel.date = Time.now
-              maker.channel.id = '1'
-            }.to_s
-                ]] }
+                    maker.channel.author = "Bob"
+                    maker.channel.date = Time.now
+                    maker.channel.id = '1'
+                  }.to_s
+                ]
+              ]
+            }
           end
           map '/articles' do
             run Html.new git_repo_path
