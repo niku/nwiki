@@ -35,6 +35,7 @@ module Nwiki
           it { should_not be_nil }
           it { subject.link.href.should eq 'http://example.org/articles.xml' }
           it { subject.title.content.should eq 'Example' }
+          it { subject.subtitle.content.should eq 'Example Site' }
         end
 
       end
