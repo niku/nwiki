@@ -38,6 +38,7 @@ module Nwiki
           it { subject.subtitle.content.should eq 'Example Site' }
           it { subject.author.name.content.should eq 'Bob' }
           it { subject.date.should eq Time.parse('2014-02-06') }
+          it { subject.id.content.should eq '1' }
         end
 
       end
