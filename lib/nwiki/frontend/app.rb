@@ -19,7 +19,7 @@ module Nwiki
                     maker.channel.link = Rack::Request.new(env).url
 
                     maker.channel.author = "Bob"
-                    maker.channel.date = Time.now
+                    maker.channel.date = Time.parse('2014-02-06')
                     maker.channel.id = '1'
                   }.to_s
                 ]
