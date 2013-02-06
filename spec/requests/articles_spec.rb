@@ -34,7 +34,7 @@ module Nwiki
           it { expect { subject }.to_not raise_error }
           it { should_not be_nil }
           it { subject.link.href.should eq 'http://example.org/articles.xml' }
-          it { subject.title.content.should eq 'Example' }
+          it { subject.title.content.should eq 'ヽ（´・肉・｀）ノログ' }
           it { subject.subtitle.content.should eq 'Example Site' }
           it { subject.author.name.content.should eq 'Bob' }
           it { subject.date.should eq Time.parse('2014-02-06') }

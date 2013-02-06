@@ -32,7 +32,7 @@ module Nwiki
           { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
           [
             RSS::Maker.make('atom') { |maker|
-              maker.channel.title = "Example"
+              maker.channel.title = @wiki.name
               maker.channel.description = "Example Site"
               maker.channel.link = Rack::Request.new(env).url
 
