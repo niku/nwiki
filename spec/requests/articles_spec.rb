@@ -41,6 +41,7 @@ module Nwiki
           it { subject.id.content.should eq '1' }
           it { subject.items.first.link.href.should eq 'http://example.com/article.html' }
           it { subject.items.first.title.content.should eq "Sample Article" }
+          it { subject.items.first.date.should eq Time.parse('2004/11/1 10:10') }
         end
 
       end
