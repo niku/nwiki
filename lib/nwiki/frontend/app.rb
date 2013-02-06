@@ -7,30 +7,7 @@ module Nwiki
       def initialize git_repo_path
         @builder = Rack::Builder.new {
           map '/articles.xml' do
-
-            run ->(env) {
-              [
-                200,
-                { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
-                [
-                  RSS::Maker.make('atom') { |maker|
-                    maker.channel.title = "Example"
-                    maker.channel.description = "Example Site"
-                    maker.channel.link = Rack::Request.new(env).url
-
-                    maker.channel.author = "Bob"
-                    maker.channel.date = Time.parse('2014-02-06')
-                    maker.channel.id = '1'
-
-                    maker.items.new_item do |item|
-                      item.link = "http://example.com/article.html"
-                      item.title = "Sample Article"
-                      item.date = Time.parse("2004/11/1 10:10")
-                    end
-                  }.to_s
-                ]
-              ]
-            }
+            run Feed.new git_repo_path
           end
           map '/articles' do
             run Html.new git_repo_path
@@ -50,7 +27,27 @@ module Nwiki
       end
 
       def call env
-        [200, { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" }, ['ok']]
+        [
+          200,
+          { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
+          [
+            RSS::Maker.make('atom') { |maker|
+              maker.channel.title = "Example"
+              maker.channel.description = "Example Site"
+              maker.channel.link = Rack::Request.new(env).url
+
+              maker.channel.author = "Bob"
+              maker.channel.date = Time.parse('2014-02-06')
+              maker.channel.id = '1'
+
+              maker.items.new_item do |item|
+                item.link = "http://example.com/article.html"
+                item.title = "Sample Article"
+                item.date = Time.parse("2004/11/1 10:10")
+              end
+            }.to_s
+          ]
+        ]
       end
     end
 
