@@ -21,6 +21,12 @@ module Nwiki
                     maker.channel.author = "Bob"
                     maker.channel.date = Time.parse('2014-02-06')
                     maker.channel.id = '1'
+
+                    maker.items.new_item do |item|
+                      item.link = "http://example.com/article.html"
+                      item.title = "Sample Article"
+                      item.date = Time.parse("2004/11/1 10:10")
+                    end
                   }.to_s
                 ]
               ]
