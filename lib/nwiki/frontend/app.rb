@@ -38,7 +38,7 @@ module Nwiki
 
               maker.channel.author = "Bob"
               maker.channel.date = Time.parse('2014-02-06')
-              maker.channel.id = '1'
+              maker.channel.id = Rack::Request.new(env).url
 
               maker.items.new_item do |item|
                 item.link = "http://example.com/article.html"
