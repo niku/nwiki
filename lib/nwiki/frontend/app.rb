@@ -33,7 +33,7 @@ module Nwiki
           [
             RSS::Maker.make('atom') { |maker|
               maker.channel.title = @wiki.title
-              maker.channel.description = "Example Site"
+              maker.channel.description = @wiki.subtitle
               maker.channel.link = Rack::Request.new(env).url
 
               maker.channel.author = "Bob"
