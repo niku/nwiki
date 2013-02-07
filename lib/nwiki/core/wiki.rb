@@ -51,8 +51,8 @@ module Nwiki
 
       def name
         blob_entry = @access
-          .tree('master')
-          .find { |e| e.path == '__nwiki/name' }
+          .tree('config')
+          .find { |e| e.path == 'title' }
         return '' unless blob_entry
         byte_string = blob_entry.blob(@access.repo).data
         byte_string.force_encoding(self.class.repo_filename_encoding)
