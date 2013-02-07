@@ -36,7 +36,7 @@ module Nwiki
               maker.channel.description = @wiki.subtitle
               maker.channel.link = Rack::Request.new(env).url
 
-              maker.channel.author = "Bob"
+              maker.channel.author = @wiki.author
               maker.channel.date = Time.parse('2014-02-06')
               maker.channel.id = Rack::Request.new(env).url
 
