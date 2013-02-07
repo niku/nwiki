@@ -35,6 +35,10 @@ module Nwiki
         it { subject.title.should eq 'ヽ（´・肉・｀）ノログ' }
       end
 
+      describe '#subtitle' do
+        it { subject.subtitle.should eq 'How do we fighting without fighting?' }
+      end
+
     end
   end
 end
