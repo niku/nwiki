@@ -39,6 +39,9 @@ module Nwiki
         it { subject.subtitle.should eq 'How do we fighting without fighting?' }
       end
 
+      describe '#author' do
+        it { subject.author.should eq 'niku' }
+      end
     end
   end
 end
