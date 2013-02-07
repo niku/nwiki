@@ -49,7 +49,7 @@ module Nwiki
         Directory.new(path, sha.map(&:path))
       end
 
-      def name
+      def title
         blob_entry = @access
           .tree('config')
           .find { |e| e.path == 'title' }

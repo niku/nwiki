@@ -32,7 +32,7 @@ module Nwiki
           { 'Content-Type' => "application/atom+xml; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
           [
             RSS::Maker.make('atom') { |maker|
-              maker.channel.title = @wiki.name
+              maker.channel.title = @wiki.title
               maker.channel.description = "Example Site"
               maker.channel.link = Rack::Request.new(env).url
 
@@ -75,13 +75,13 @@ module Nwiki
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title><%= page.title %> - <%= @wiki.name %></title>
+  <title><%= page.title %> - <%= @wiki.title %></title>
   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><%= @wiki.name %></h1>
+<h1><%= @wiki.title %></h1>
 <%= page.to_html %>
 </body>
 </html>

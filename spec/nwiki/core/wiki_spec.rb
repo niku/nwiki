@@ -31,8 +31,8 @@ module Nwiki
         }
       end
 
-      describe '#name' do
-        it { subject.name.should eq 'ヽ（´・肉・｀）ノログ' }
+      describe '#title' do
+        it { subject.title.should eq 'ヽ（´・肉・｀）ノログ' }
       end
 
     end
