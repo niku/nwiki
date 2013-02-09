@@ -1,4 +1,7 @@
 * CHANGELOG
+** 0.0.8
+ - [feature] Config files move to branch
+ - [feature] Introduce atom feed
 ** 0.0.7
  - Internal change(rack middleware into app)
 ** 0.0.6
