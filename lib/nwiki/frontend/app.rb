@@ -40,10 +40,24 @@ module Nwiki
               maker.channel.date = Time.parse('2014-02-06')
               maker.channel.id = Rack::Request.new(env).url
 
-              maker.items.new_item do |item|
-                item.link = "http://example.com/article.html"
-                item.title = "Sample Article"
-                item.date = Time.parse("2004/11/1 10:10")
+              maker.items.do_sort = true
+              maker.items.max_size = 50
+
+              log = @wiki.access.repo.log
+              log.each do |commit|
+                date = commit.date
+                commit.show.each do |diff|
+                  next unless diff.new_file
+
+                  path = Nwiki::Core::Wiki.canonicalize_path(diff.b_path)
+                  path.gsub!(/\.org$/, '')
+
+                  maker.items.new_item do |item|
+                    item.link = Rack::Request.new(env).url.gsub(Regexp.new(Rack::Request.new(env).fullpath), "/#{path}")
+                    item.title = File.basename(path)
+                    item.date = date
+                  end
+                end
               end
             }.to_s
           ]

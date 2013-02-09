@@ -15,6 +15,8 @@ module Nwiki
         unescaped_path.sub(/^\//, '')
       end
 
+      attr_reader :access
+
       def initialize path
         @path = path
         @access = GitAccess.new(path)

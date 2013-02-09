@@ -39,9 +39,9 @@ module Nwiki
           it { subject.author.name.content.should eq 'niku' }
           it { subject.date.should eq Time.parse('2014-02-06') }
           it { subject.id.content.should eq 'http://example.org/articles.xml' }
-          it { subject.items.first.link.href.should eq 'http://example.com/article.html' }
-          it { subject.items.first.title.content.should eq "Sample Article" }
-          it { subject.items.first.date.should eq Time.parse('2004/11/1 10:10') }
+          it { subject.items.first.link.href.should eq 'http://example.org/icon.png' }
+          it { subject.items.first.title.content.should eq "icon.png" }
+          it { subject.items.first.date.should eq Time.parse('2012-08-09 20:15:07 +0900') }
         end
 
       end
