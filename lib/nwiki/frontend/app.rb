@@ -99,6 +99,7 @@ module Nwiki
 </head>
 <body>
 <h1><%= @wiki.title %></h1>
+<h2><%= @wiki.subtitle %></h2>
 <%= page.to_html %>
 </body>
 </html>
