@@ -7,7 +7,7 @@ module Nwiki
       def initialize git_repo_path
         @builder = Rack::Builder.new {
           map '/articles.xml' do
-            run Feed.new git_repo_path
+            run Feed.new git_repo_path, articles_path: '/articles'
           end
           map '/articles' do
             run Html.new git_repo_path
@@ -21,9 +21,12 @@ module Nwiki
     end
 
     class Feed
-      def initialize git_repo_path
+      attr_reader :articles_path
+
+      def initialize git_repo_path, opts = {}
         @wiki = Nwiki::Core::Wiki.new git_repo_path
         raise unless @wiki.exist?
+        @articles_path = opts[:articles_path] || ''
       end
 
       def call env
@@ -53,7 +56,7 @@ module Nwiki
                   path.gsub!(/\.org$/, '')
 
                   maker.items.new_item do |item|
-                    item.link = Rack::Request.new(env).url.gsub(Regexp.new(Rack::Request.new(env).fullpath), "/#{path}")
+                    item.link = Rack::Request.new(env).url.gsub(Regexp.new(Rack::Request.new(env).fullpath), "#{articles_path}/#{path}")
                     item.title = File.basename(path)
                     item.date = date
                   end
