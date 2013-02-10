@@ -93,6 +93,7 @@ module Nwiki
 <html>
 <head>
   <title><%= page.title %> - <%= @wiki.title %></title>
+  <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="/bootstrap/js/bootstrap.min.js"></script>
