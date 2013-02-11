@@ -1,6 +1,7 @@
 * CHANGELOG
 ** 0.0.9 (not release yet)
  - [fix] Fix url in the feed
+ - [feature] Use recent version of jQuery
 ** 0.0.8
  - [feature] Config files move to branch
  - [feature] Introduce atom feed
