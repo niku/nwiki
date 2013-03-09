@@ -1,5 +1,5 @@
 * CHANGELOG
-** 0.0.9 (not release yet)
+** 0.0.9
  - [fix] Fix url in the feed
  - [feature] Use recent version of jQuery
  - [feature] refine display layout
