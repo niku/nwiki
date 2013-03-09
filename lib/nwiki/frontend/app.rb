@@ -99,9 +99,15 @@ module Nwiki
   <script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><%= @wiki.title %></h1>
-<h2><%= @wiki.subtitle %></h2>
-<%= page.to_html %>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h1><%= @wiki.title %></h1>
+        <h2><%= @wiki.subtitle %></h2>
+        <%= page.to_html %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 EOS
