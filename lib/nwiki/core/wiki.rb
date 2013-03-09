@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+require 'rack'
+
 module Nwiki
   module Core
     class Wiki

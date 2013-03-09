@@ -1,3 +1,5 @@
+require 'rack'
+
 module Nwiki
   module Core
     class File
