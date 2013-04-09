@@ -1,4 +1,4 @@
-require 'gollum'
+require 'gollum-lib'
 
 module Nwiki
   module Core
