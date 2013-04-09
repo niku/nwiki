@@ -17,12 +17,10 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency('gollum')
   gem.add_dependency('rack')
-  gem.add_dependency('sinatra')
   gem.add_dependency('org-ruby')
-  gem.add_dependency('grit')
 
   gem.add_development_dependency('rake')
-  gem.add_development_dependency('rspec', '>= 2.6')
+  gem.add_development_dependency('rspec')
   gem.add_development_dependency('rack-test')
   gem.add_development_dependency('guard')
   gem.add_development_dependency('guard-rspec')
