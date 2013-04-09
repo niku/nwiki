@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.1.0
+ - [feature] filter list of directory structure. return '.org' file only.
 ** 0.0.9
  - [fix] Fix url in the feed
  - [feature] Use recent version of jQuery
