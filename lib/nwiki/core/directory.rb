@@ -10,6 +10,7 @@ module Nwiki
       def initialize path, list
         @path = path
         @list = list.
+          select { |e| e =~ /\.org$/ }.
           map { |e| e.sub(/\.org$/){ '' } }
       end
 

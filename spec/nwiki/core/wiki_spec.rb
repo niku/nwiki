@@ -27,7 +27,7 @@ module Nwiki
 
       describe '#find_directory' do
         it { subject.find_directory('/').list.should eq \
-          Directory.new('/', ["1/2/a", "1/2/b", "foo", "icon.png", "日本語ディレクトリ/わたしだ"]).list
+          ["1/2/a", "1/2/b", "foo", "日本語ディレクトリ/わたしだ"]
         }
       end
 
