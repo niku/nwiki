@@ -10,7 +10,6 @@ module Nwiki
       def initialize path, list
         @path = path
         @list = list.
-          reject { |e| e =~ /^__nwiki/ }.
           map { |e| e.sub(/\.org$/){ '' } }
       end
 
