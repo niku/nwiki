@@ -1,5 +1,10 @@
 # Nwiki
 
+[![Build Status](https://travis-ci.org/niku/nwiki.png?branch=master)](https://travis-ci.org/niku/nwiki)
+[![Dependency Status](https://gemnasium.com/niku/nwiki.png)](https://gemnasium.com/niku/nwiki)
+[![Code Climate](https://codeclimate.com/github/niku/nwiki.png)](https://codeclimate.com/github/niku/nwiki)
+[![Coverage Status](https://coveralls.io/repos/niku/nwiki/badge.png?branch=master)](https://coveralls.io/r/niku/nwiki)
+
 TODO: Write a gem description
 
 ## Installation
