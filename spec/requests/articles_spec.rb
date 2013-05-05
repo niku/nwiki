@@ -14,6 +14,12 @@ module Nwiki
         get path
       end
 
+      context 'GET /' do
+        let(:path) { '/' }
+
+        it { subject.should be_ok }
+      end
+
       context 'GET /articles' do
         let(:path) { '/articles/' }
 

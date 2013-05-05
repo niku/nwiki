@@ -6,6 +6,15 @@ module Nwiki
     class App
       def initialize git_repo_path
         @builder = Rack::Builder.new {
+          map '/' do
+            run ->(req) {
+              [
+                200,
+                { "Content-Type" => "text/html; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
+                []
+              ]
+            }
+          end
           map '/articles.xml' do
             run Feed.new git_repo_path, articles_path: '/articles'
           end
