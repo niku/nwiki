@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.0.11
+
 ** 0.0.10
  - [feature] filter list of directory structure. return '.org' file only.
 ** 0.0.9
