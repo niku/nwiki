@@ -18,6 +18,7 @@ module Nwiki
         let(:path) { '/' }
 
         it { subject.should be_ok }
+        it { subject.should match %r!\bヽ（´・肉・｀）ノログ\b! }
       end
 
       context 'GET /articles' do

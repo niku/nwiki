@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'erb'
 require 'rss'
 
@@ -11,7 +12,7 @@ module Nwiki
               [
                 200,
                 { "Content-Type" => "text/html; charset=#{Nwiki::Core::Wiki.repo_filename_encoding}" },
-                []
+                ['ヽ（´・肉・｀）ノログ']
               ]
             }
           end
