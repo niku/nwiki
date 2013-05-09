@@ -19,6 +19,7 @@ module Nwiki
 
         it { subject.should be_ok }
         it { subject.should match %r!\bヽ（´・肉・｀）ノログ\b! }
+        it { subject.should match %r!\bHow do we fighting without fighting?\b! }
       end
 
       context 'GET /articles' do
