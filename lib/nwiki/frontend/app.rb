@@ -148,7 +148,7 @@ EOS
   <div class="container">
     <div class="row">
       <div class="span12">
-        <h1><%= @wiki.title %></h1>
+        <h1><a href="/articles"><%= @wiki.title %></a></h1>
         <h2><%= @wiki.subtitle %></h2>
         <%= page.to_html %>
       </div>

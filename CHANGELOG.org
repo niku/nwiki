@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.1.0
+ - [feature] link to list of articles
 ** 0.0.11
  - [feature] change top-page from static to dynamic
 ** 0.0.10
