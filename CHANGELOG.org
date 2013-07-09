@@ -1,5 +1,6 @@
 * CHANGELOG
 ** 0.1.1
+ - [fix] Complement '/' to url when title clicked.
 ** 0.1.0
  - [feature] link to list of articles
 ** 0.0.11
