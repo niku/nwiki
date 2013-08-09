@@ -22,7 +22,7 @@ module Nwiki
               maker.channel.link = Rack::Request.new(env).url
 
               maker.channel.author = @wiki.author
-              maker.channel.date = Time.parse('2014-02-06')
+              maker.channel.date = latest_update
               maker.channel.id = Rack::Request.new(env).url
 
               maker.items.do_sort = true
@@ -47,6 +47,16 @@ module Nwiki
             }.to_s
           ]
         ]
+      end
+
+      private
+      def latest_update
+        log = @wiki.access.repo.log
+        latest_update = Time.parse('1900-01-01')
+        log.each do |commit|
+          latest_update = commit.date if commit.date > latest_update
+        end
+        latest_update
       end
     end
   end

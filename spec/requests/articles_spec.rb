@@ -45,7 +45,7 @@ module Nwiki
           it { subject.title.content.should eq 'ヽ（´・肉・｀）ノログ' }
           it { subject.subtitle.content.should eq 'How do we fighting without fighting?' }
           it { subject.author.name.content.should eq 'niku' }
-          it { subject.date.should eq Time.parse('2014-02-06') }
+          it { subject.date.should eq Time.parse('2013-02-07 23:25:44 +0900') }
           it { subject.id.content.should eq 'http://example.org/articles.xml' }
           it { subject.items.first.link.href.should eq 'http://example.org/articles/icon.png' }
           it { subject.items.first.title.content.should eq "icon.png" }
