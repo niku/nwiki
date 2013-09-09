@@ -17,7 +17,7 @@ module Nwiki
         when Core::File
           [200, {"Content-Type" => page.content_type}, [page.data]]
         else
-          [404, {"Content-Type" => "text/plane"}, ["not found."]]
+          [404, {"Content-Type" => "text/plain"}, ["not found."]]
         end
       end
 
