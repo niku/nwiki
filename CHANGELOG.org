@@ -1,5 +1,6 @@
 * CHANGELOG
 ** 0.1.3
+ - [feature] apply twitter bootstrap 3 style
 ** 0.1.2
  - [fix] latest-update in RSS
 ** 0.1.1

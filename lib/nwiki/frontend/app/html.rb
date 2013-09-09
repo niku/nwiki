@@ -36,9 +36,11 @@ module Nwiki
 <body>
   <div class="container">
     <div class="row">
-      <div class="span12">
-        <h1><a href="/articles/"><%= @wiki.title %></a></h1>
-        <h2><%= @wiki.subtitle %></h2>
+      <div class="col-md-8"><h1><a href="/articles/"><%= @wiki.title %></a></h1></div>
+      <div class="col-md-4"><h2 class="text-right"><small><%= @wiki.subtitle %></small></h2></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <%= page.to_html %>
       </div>
     </div>
