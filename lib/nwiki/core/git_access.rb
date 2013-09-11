@@ -19,6 +19,12 @@ module Nwiki
         title_blob = @repo.lookup(title_entry[:oid])
         title_blob.text.chomp
       end
+
+      def subtitle
+        subtitle_entry = config.tip.tree.get_entry('subtitle')
+        subtitle_blob = @repo.lookup(subtitle_entry[:oid])
+        subtitle_blob.text.chomp
+      end
     end
   end
 end
