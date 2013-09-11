@@ -21,6 +21,7 @@ module Nwiki
       def initialize path
         @path = path
         @access = GitAccess.new(path)
+        @new_git_access = NewGitAccess.new(path)
       end
 
       def find path
@@ -53,13 +54,7 @@ module Nwiki
       end
 
       def title
-        blob_entry = @access
-          .tree('config')
-          .find { |e| e.path == 'title' }
-        return '' unless blob_entry
-        byte_string = blob_entry.blob(@access.repo).data
-        byte_string.force_encoding(self.class.repo_filename_encoding)
-        byte_string.chomp
+        @new_git_access.title
       end
 
       def subtitle
