@@ -25,6 +25,12 @@ module Nwiki
         subtitle_blob = @repo.lookup(subtitle_entry[:oid])
         subtitle_blob.text.chomp
       end
+
+      def author
+        author_entry = config.tip.tree.get_entry('author')
+        author_blob = @repo.lookup(author_entry[:oid])
+        author_blob.text.chomp
+      end
     end
   end
 end

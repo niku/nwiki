@@ -27,6 +27,10 @@ module Nwiki
       describe '#subtitle' do
         it { expect(subject.subtitle).to eq 'How do we fighting without fighting?' }
       end
+
+      describe '#author' do
+        it { expect(subject.author).to eq 'niku' }
+      end
     end
   end
 end
