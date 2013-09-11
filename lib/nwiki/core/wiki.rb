@@ -58,13 +58,7 @@ module Nwiki
       end
 
       def subtitle
-        blob_entry = @access
-          .tree('config')
-          .find { |e| e.path == 'subtitle' }
-        return '' unless blob_entry
-        byte_string = blob_entry.blob(@access.repo).data
-        byte_string.force_encoding(self.class.repo_filename_encoding)
-        byte_string.chomp
+        @new_git_access.subtitle
       end
 
       def author
