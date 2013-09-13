@@ -34,16 +34,14 @@ module Nwiki
       end
 
       def find_page_or_file path
-        blob_entry = @access
-          .tree('master')
-          .find { |e| path == e.path.sub(/\.org$/){ '' } }
-        return nil unless blob_entry
-        byte_string = blob_entry.blob(@access.repo).data
-        if blob_entry.name =~ /\.org$/
-          byte_string.force_encoding(self.class.repo_filename_encoding)
-          Page.new(::File.basename(blob_entry.name, '.org'), byte_string, self.class.parser)
+        entry = @new_git_access.find_file do |entry_path|
+          path == entry_path.sub(/\.org$/){ '' }
+        end
+        return nil unless entry
+        if entry.path =~ /\.org$/
+          Page.new(entry.path, entry.text, self.class.parser)
         else
-          File.new(blob_entry.name, byte_string)
+          File.new(entry.path, entry.content)
         end
       end
 
