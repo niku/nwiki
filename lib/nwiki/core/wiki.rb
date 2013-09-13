@@ -62,13 +62,7 @@ module Nwiki
       end
 
       def author
-        blob_entry = @access
-          .tree('config')
-          .find { |e| e.path == 'author' }
-        return '' unless blob_entry
-        byte_string = blob_entry.blob(@access.repo).data
-        byte_string.force_encoding(self.class.repo_filename_encoding)
-        byte_string.chomp
+        @new_git_access.author
       end
 
       def exist?
