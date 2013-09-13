@@ -31,6 +31,10 @@ module Nwiki
       describe '#author' do
         it { expect(subject.author).to eq 'niku' }
       end
+
+      describe '#find_file' do
+        it { expect(subject.find_file { |path| path == '1/2/b.org' }.text).to eq "* b\n\n" }
+      end
     end
   end
 end

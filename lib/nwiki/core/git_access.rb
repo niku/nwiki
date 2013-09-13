@@ -1,10 +1,25 @@
 require 'gollum-lib'
 require 'rugged'
+require 'forwardable'
 
 module Nwiki
   module Core
     # copy from gollum
     GitAccess = ::Gollum::GitAccess
+
+    class Entry
+      extend Forwardable
+
+      attr_reader :path
+
+      def initialize path, blob_object
+        @path = path
+        @blob_object = blob_object
+      end
+
+      def_delegators :@blob_object, :size, :content, :text, :binary?
+    end
+
     class NewGitAccess
       def initialize repo_path
         @repo = Rugged::Repository.new(::File.expand_path(repo_path))
@@ -30,6 +45,16 @@ module Nwiki
         author_entry = config.tip.tree.get_entry('author')
         author_blob = @repo.lookup(author_entry[:oid])
         author_blob.text.chomp
+      end
+
+      def find_file
+        target =  @repo.head.target
+        @repo.lookup(target).tree.walk_blobs do |path, object|
+          fullpath = path + object[:name]
+          if yield(fullpath)
+            return Entry.new(fullpath, @repo.lookup(object[:oid]))
+          end
+        end
       end
     end
   end
