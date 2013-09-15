@@ -56,6 +56,16 @@ module Nwiki
           end
         end
       end
+
+      def all_files
+        [].tap do |result|
+          target =  @repo.head.target
+          @repo.lookup(target).tree.walk_blobs do |path, object|
+            fullpath = path + object[:name]
+            result << Entry.new(fullpath, @repo.lookup(object[:oid]))
+          end
+        end
+      end
     end
   end
 end

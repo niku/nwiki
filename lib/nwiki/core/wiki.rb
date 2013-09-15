@@ -46,9 +46,9 @@ module Nwiki
       end
 
       def find_directory path
-        sha = @access.tree('master')
+        files = @new_git_access.all_files
         Directory.encoding = self.class.repo_filename_encoding
-        Directory.new(path, sha.map(&:path))
+        Directory.new(path, files.map(&:path))
       end
 
       def title
