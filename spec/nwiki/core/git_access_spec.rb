@@ -43,6 +43,16 @@ module Nwiki
         it { expect(subject.first).to be_kind_of Entry}
         it { expect(subject.first.path).to eq '1/2/a.org'}
       end
+
+      describe '#log' do
+        subject { super().log }
+
+        it { expect(subject).to be_kind_of Enumerable }
+        it { expect(subject.first.path).to eq 'foo.org' }
+        it { expect(subject.first.time).to eq Time.parse('2012-08-09 20:15:07 +0900') }
+        it { expect(subject.last.path).to eq '1/2/b.org' }
+        it { expect(subject.last.time).to eq Time.parse('2012-06-14 21:55:15 +0900') }
+      end
     end
   end
 end
