@@ -35,6 +35,14 @@ module Nwiki
       describe '#find_file' do
         it { expect(subject.find_file { |path| path == '1/2/b.org' }.text).to eq "* b\n\n" }
       end
+
+      describe '#all_files' do
+        subject { super().all_files }
+
+        it { expect(subject).to have(5).items }
+        it { expect(subject.first).to be_kind_of Entry}
+        it { expect(subject.first.path).to eq '1/2/a.org'}
+      end
     end
   end
 end
