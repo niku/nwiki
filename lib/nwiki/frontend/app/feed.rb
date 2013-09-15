@@ -7,7 +7,6 @@ module Nwiki
 
       def initialize git_repo_path, opts = {}
         @wiki = Nwiki::Core::Wiki.new git_repo_path
-        raise unless @wiki.exist?
         @articles_path = opts[:articles_path] || ''
       end
 

@@ -62,10 +62,6 @@ module Nwiki
       def author
         @new_git_access.author
       end
-
-      def exist?
-        @access.exist?
-      end
     end
   end
 end

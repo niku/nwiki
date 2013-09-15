@@ -5,7 +5,6 @@ module Nwiki
     class Html
       def initialize git_repo_path
         @wiki = Nwiki::Core::Wiki.new git_repo_path
-        raise unless @wiki.exist?
       end
 
       def call env
