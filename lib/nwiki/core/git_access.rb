@@ -13,7 +13,11 @@ module Nwiki
         @blob_object = blob_object
       end
 
-      def_delegators :@blob_object, :size, :content, :text, :binary?
+      def text
+        @blob_object.text.force_encoding('UTF-8')
+      end
+
+      def_delegators :@blob_object, :size, :content, :binary?
     end
 
     class Diff
@@ -41,19 +45,19 @@ module Nwiki
       def title
         title_entry = config.tip.tree.get_entry('title')
         title_blob = @repo.lookup(title_entry[:oid])
-        title_blob.text.chomp
+        title_blob.text.chomp.force_encoding('UTF-8')
       end
 
       def subtitle
         subtitle_entry = config.tip.tree.get_entry('subtitle')
         subtitle_blob = @repo.lookup(subtitle_entry[:oid])
-        subtitle_blob.text.chomp
+        subtitle_blob.text.chomp.force_encoding('UTF-8')
       end
 
       def author
         author_entry = config.tip.tree.get_entry('author')
         author_blob = @repo.lookup(author_entry[:oid])
-        author_blob.text.chomp
+        author_blob.text.chomp.force_encoding('UTF-8')
       end
 
       def find_file
