@@ -16,12 +16,9 @@ module Nwiki
         unescaped_path.sub(/^\//, '')
       end
 
-      attr_reader :access
-
       def initialize path
         @path = path
-        @access = GitAccess.new(path)
-        @new_git_access = NewGitAccess.new(path)
+        @access = NewGitAccess.new(path)
       end
 
       def find path
@@ -34,7 +31,7 @@ module Nwiki
       end
 
       def find_page_or_file path
-        entry = @new_git_access.find_file do |entry_path|
+        entry = @access.find_file do |entry_path|
           path == entry_path.sub(/\.org$/){ '' }
         end
         return nil unless entry
@@ -46,25 +43,25 @@ module Nwiki
       end
 
       def find_directory path
-        files = @new_git_access.all_files
+        files = @access.all_files
         Directory.encoding = self.class.repo_filename_encoding
         Directory.new(path, files.map(&:path))
       end
 
       def title
-        @new_git_access.title
+        @access.title
       end
 
       def subtitle
-        @new_git_access.subtitle
+        @access.subtitle
       end
 
       def author
-        @new_git_access.author
+        @access.author
       end
 
       def log
-        @new_git_access.log
+        @access.log
       end
     end
   end
