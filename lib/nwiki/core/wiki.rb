@@ -62,6 +62,10 @@ module Nwiki
       def author
         @new_git_access.author
       end
+
+      def log
+        @new_git_access.log
+      end
     end
   end
 end
