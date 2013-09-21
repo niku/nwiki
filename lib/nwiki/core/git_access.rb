@@ -1,12 +1,8 @@
-require 'gollum-lib'
 require 'rugged'
 require 'forwardable'
 
 module Nwiki
   module Core
-    # copy from gollum
-    GitAccess = ::Gollum::GitAccess
-
     class Entry
       extend Forwardable
 
@@ -33,7 +29,7 @@ module Nwiki
       def_delegators :@entry, :size, :content, :text, :binary?, :path
     end
 
-    class NewGitAccess
+    class GitAccess
       def initialize repo_path
         @repo = Rugged::Repository.new(::File.expand_path(repo_path))
       end

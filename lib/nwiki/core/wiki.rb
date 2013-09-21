@@ -1,4 +1,5 @@
 require 'rack'
+require 'org-ruby'
 
 module Nwiki
   module Core
@@ -18,7 +19,7 @@ module Nwiki
 
       def initialize path
         @path = path
-        @access = NewGitAccess.new(path)
+        @access = GitAccess.new(path)
       end
 
       def find path
