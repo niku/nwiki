@@ -29,6 +29,7 @@ module Nwiki
 
               @wiki.log.each do |diff|
                 path = Nwiki::Core::Wiki.canonicalize_path(diff.path)
+                next if path =~ /\.gif|png|jpg$/ # FIXME Don't display binary file at feed
                 path.gsub!(/\.org$/, '')
 
                 maker.items.new_item do |item|
