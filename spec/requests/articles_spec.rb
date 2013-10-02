@@ -59,6 +59,7 @@ module Nwiki
         let(:path) { '/articles/foo' }
 
         it { subject.should be_ok }
+        it { subject.should match %r!<title[^>]*>foo - ヽ（´・肉・｀）ノログ</title>!}
         it { subject.should match %r!<h2[^>]*>Foo</h2>! }
         it { subject.should match %r!<h3[^>]*>Bar</h3>! }
       end
@@ -92,6 +93,7 @@ module Nwiki
         let(:path) { URI.encode '/articles/日本語ディレクトリ/わたしだ' }
 
         it { subject.should be_ok }
+        it { subject.body.should match %r!<title[^>]*>日本語ディレクトリ/わたしだ - ヽ（´・肉・｀）ノログ</title>!}
         it { subject.body.should match %r!<h2[^>]*>お前だったのか</h2>! }
         it { subject.body.should match %r!<h3[^>]*>気づかなかったな</h3>! }
       end

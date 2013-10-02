@@ -37,7 +37,8 @@ module Nwiki
         end
         return nil unless entry
         if entry.path =~ /\.org$/
-          Page.new(entry.path, entry.text, self.class.parser)
+          path = entry.path.sub(/\.org$/){ '' }
+          Page.new(path, entry.text, self.class.parser)
         else
           File.new(entry.path, entry.content)
         end
