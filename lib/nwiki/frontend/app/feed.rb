@@ -33,7 +33,7 @@ module Nwiki
 
                 maker.items.new_item do |item|
                   item.link = Rack::Request.new(env).url.gsub(Regexp.new(Rack::Request.new(env).fullpath), "#{articles_path}/#{path}")
-                  item.title = File.basename(path)
+                  item.title = path
                   item.date = diff.time
                 end
               end
