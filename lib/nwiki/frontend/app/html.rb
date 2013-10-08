@@ -27,10 +27,8 @@ module Nwiki
 <head>
   <title><%= page.title %> - <%= @wiki.title %></title>
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -44,6 +42,8 @@ module Nwiki
       </div>
     </div>
   </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
 EOS
