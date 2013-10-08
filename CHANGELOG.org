@@ -2,6 +2,7 @@
 ** 0.1.4
  - [feature] remove dependency of `gollum-lib`
  - [feature] work on Ruby2.0
+ - [feature] optimize rendering for smartphone
 ** 0.1.3
  - [feature] apply twitter bootstrap 3 style
  - [fix] fix mime-type when render 404(Not Found) page

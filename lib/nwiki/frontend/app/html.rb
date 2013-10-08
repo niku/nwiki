@@ -26,6 +26,7 @@ module Nwiki
 <html>
 <head>
   <title><%= page.title %> - <%= @wiki.title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
