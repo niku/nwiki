@@ -29,6 +29,9 @@ module Nwiki
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
 </head>
 <body>
+  <a href="https://github.com/niku/nikulog">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
+  </a>
   <div class="container">
     <div class="row">
       <div class="col-md-8"><h1><a href="/articles/"><%= @wiki.title %></a></h1></div>
