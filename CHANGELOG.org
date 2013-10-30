@@ -1,6 +1,7 @@
 * CHANGELOG
 ** 0.1.5 (NOT RELEASED YET)
  - [feature] add GitHub Ribbons
+ - [fix] fix overlapping the ribbon on the subtitle
 ** 0.1.4
  - [feature] remove dependency of `gollum-lib`
  - [feature] work on Ruby2.0
