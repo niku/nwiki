@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.1.6 (NOT RELEASED YET)
+
 ** 0.1.5
  - [feature] add GitHub Ribbons
  - [fix] fix overlapping the ribbon on the subtitle
