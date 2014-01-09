@@ -1,5 +1,6 @@
 * CHANGELOG
-** 0.1.7 (NOT RELEASED YET)
+** 0.1.7
+-  [feature] works on Ruby2.1
 ** 0.1.6
  - [feature] update twitter bootstrap
 ** 0.1.5
