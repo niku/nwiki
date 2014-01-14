@@ -31,3 +31,22 @@
         (buffer-file-name-without-directory (file-name-nondirectory buffer-file-name)))
     (unless (equal file-name-from-title buffer-file-name-without-directory)
       (rename-file-and-buffer file-name-from-title))))
+
+(defun nwiki-add-this-buffer ()
+  "add this buffer to repository"
+  (call-process "git" nil nil nil "add" buffer-file-name))
+
+(defun nwiki-commit-this-buffer ()
+  "commit this buffer to repository"
+  (call-process "git" nil nil nil "commit" "--no-edit"))
+
+(defun nwiki-add-and-commit-this-buffer ()
+  "add and commit this buffer to repository"
+  (nwiki-add-this-buffer)
+  (nwiki-commit-this-buffer))
+
+(defun nwiki-sync-and-commit ()
+  "sync and commit this-buffer"
+  (interactive)
+  (nwiki-sync-buffername-with-title)
+  (nwiki-add-and-commit-this-buffer))
