@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+exit unless ARGV[1].nil?
+
+message = `git diff --cached --name-status -r`.
+  split("\n").map{|e| e.split }.
+  select{|e| e[1] =~ /\.org$/ }.
+  map{|e| File.basename(e[1]).sub(/\.org$/, '') }.
+  join(',')
+
+File.write(ARGV[0], message + "\n" + File.read(ARGV[0]))

@@ -1,5 +1,6 @@
 * CHANGELOG
 ** 0.1.8 (NOT REREASED YET)
+ - [feature] add git hook for writing commit message easily
 ** 0.1.7
 -  [feature] works on Ruby2.1
 ** 0.1.6
