@@ -1,4 +1,5 @@
 * CHANGELOG
+** 0.1.8 (NOT REREASED YET)
 ** 0.1.7
 -  [feature] works on Ruby2.1
 ** 0.1.6
