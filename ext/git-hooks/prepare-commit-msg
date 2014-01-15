@@ -2,6 +2,7 @@
 exit unless ARGV[1].nil?
 
 message = `git diff --cached --name-status -r`.
+  force_encoding('UTF-8').
   split("\n").map{|e| e.split }.
   select{|e| e[1] =~ /\.org$/ }.
   map{|e| File.basename(e[1]).sub(/\.org$/, '') }.
