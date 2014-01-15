@@ -34,11 +34,11 @@
 
 (defun nwiki-add-this-buffer ()
   "add this buffer to repository"
-  (call-process "git" nil nil nil "add" buffer-file-name))
+  (shell-command (format "git add %s" buffer-file-name)))
 
 (defun nwiki-commit-this-buffer ()
   "commit this buffer to repository"
-  (call-process "git" nil nil nil "commit" "--no-edit"))
+  (shell-command "git commit --no-edit"))
 
 (defun nwiki-add-and-commit-this-buffer ()
   "add and commit this buffer to repository"
