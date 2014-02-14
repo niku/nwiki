@@ -15,7 +15,7 @@ module Nwiki
       end
 
       def to_html
-        @parser_class.new(@doc, 1).to_html
+        @parser_class.new(@doc, offset: 1).to_html
       end
 
       def == other
