@@ -29,7 +29,8 @@ module Nwiki
 
         it { expect(subject).to have(5).items }
         it { expect(subject.first).to be_kind_of Entry}
-        it { expect(subject.first.path).to eq '1/2/a.org'}
+        it { expect(subject.first.path).to eq 'foo.org'}
+        it { expect(subject.last.path).to eq '1/2/b.org'}
       end
 
       describe '#log' do

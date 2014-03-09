@@ -1,5 +1,6 @@
 * CHANGELOG
-** 0.1.9 (NOT REREASED YET)
+** 0.1.9
+ - [improvement] list order by date newer to older
 ** 0.1.8
  - [feature] add git hook for writing commit message easily
  - [feature] (elisp) sync org-filename with title
