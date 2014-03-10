@@ -39,30 +39,30 @@ module Nwiki
       end
 
       def config
-        Rugged::Branch.lookup(@repo, 'config')
+        @repo.branches['config']
       end
 
       def title
-        title_entry = config.tip.tree.get_entry('title')
+        title_entry = config.target.tree.get_entry('title')
         title_blob = @repo.lookup(title_entry[:oid])
         title_blob.text.chomp.force_encoding('UTF-8')
       end
 
       def subtitle
-        subtitle_entry = config.tip.tree.get_entry('subtitle')
+        subtitle_entry = config.target.tree.get_entry('subtitle')
         subtitle_blob = @repo.lookup(subtitle_entry[:oid])
         subtitle_blob.text.chomp.force_encoding('UTF-8')
       end
 
       def author
-        author_entry = config.tip.tree.get_entry('author')
+        author_entry = config.target.tree.get_entry('author')
         author_blob = @repo.lookup(author_entry[:oid])
         author_blob.text.chomp.force_encoding('UTF-8')
       end
 
       def find_file
         target =  @repo.head.target
-        @repo.lookup(target).tree.walk_blobs do |path, object|
+        target.tree.walk_blobs do |path, object|
           fullpath = path + object[:name]
           if yield(fullpath)
             return Entry.new(fullpath, @repo.lookup(object[:oid]))
