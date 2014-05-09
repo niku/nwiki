@@ -21,11 +21,12 @@ module Nwiki
       end
 
       def html page
+        page_title = page.title.empty? ? '' : "#{page.title} - "
         erb = ERB.new <<EOS
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title><%= page.title %> - <%= @wiki.title %></title>
+  <title><%= page_title %><%= @wiki.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
