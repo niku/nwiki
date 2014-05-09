@@ -1,5 +1,5 @@
 * CHANGELOG
-** 0.1.11 (NOT RELEASED YET)
+** 0.1.11
  - [fix] Do not print '-' if page title is empty.
 ** 0.1.10
  - [fix] Adapt interface with C
