@@ -8,39 +8,39 @@ module Nwiki
       subject { described_class.new(path) }
 
       describe '.parser' do
-        it { described_class.parser.should eq Orgmode::Parser }
+        it { expect(described_class.parser).to eq Orgmode::Parser }
       end
 
       describe '.canonicalize_path' do
-        it { described_class.canonicalize_path('/foo/bar/').should eq 'foo/bar/' }
-        it { described_class.canonicalize_path('/%E6%97%A5%E6%9C%AC%E8%AA%9E').should eq '日本語' }
+        it { expect(described_class.canonicalize_path('/foo/bar/')).to eq 'foo/bar/' }
+        it { expect(described_class.canonicalize_path('/%E6%97%A5%E6%9C%AC%E8%AA%9E')).to eq '日本語' }
       end
 
       describe '#find' do
-        it { subject.find('/foo').should eq Page.new("Foo", "* Foo\n** Bar\n[[icon.png]]\n", Wiki.parser) }
-        it { subject.find('/icon.png').should be_kind_of File }
-        it { subject.find('/').should be_kind_of Directory }
-        it { subject.find('/not_exist_page').should be_nil }
-        it { subject.find('/1/2/a').should_not be_nil }
-        it { subject.find('/日本語ディレクトリ/わたしだ').should_not be_nil }
+        it { expect(subject.find('/foo')).to eq Page.new("Foo", "* Foo\n** Bar\n[[icon.png]]\n", Wiki.parser) }
+        it { expect(subject.find('/icon.png')).to be_kind_of File }
+        it { expect(subject.find('/')).to be_kind_of Directory }
+        it { expect(subject.find('/not_exist_page')).to be_nil }
+        it { expect(subject.find('/1/2/a')).to_not be_nil }
+        it { expect(subject.find('/日本語ディレクトリ/わたしだ')).to_not be_nil }
       end
 
       describe '#find_directory' do
-        it { subject.find_directory('/').list.should eq \
+        it { expect(subject.find_directory('/').list).to eq \
           ["foo", "日本語ディレクトリ/わたしだ", "1/2/a", "1/2/b"]
         }
       end
 
       describe '#title' do
-        it { subject.title.should eq 'ヽ（´・肉・｀）ノログ' }
+        it { expect(subject.title).to eq 'ヽ（´・肉・｀）ノログ' }
       end
 
       describe '#subtitle' do
-        it { subject.subtitle.should eq 'How do we fighting without fighting?' }
+        it { expect(subject.subtitle).to eq 'How do we fighting without fighting?' }
       end
 
       describe '#author' do
-        it { subject.author.should eq 'niku' }
+        it { (expect(subject.author)).to eq 'niku' }
       end
     end
   end
