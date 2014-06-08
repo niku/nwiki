@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.2.0 (NOT RELEASED YET)
+
 ** 0.1.11
  - [fix] Do not print '-' if page title is empty.
 ** 0.1.10
