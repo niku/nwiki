@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.version       = Nwiki::VERSION
 
   gem.add_dependency('rack')
+  gem.add_dependency('rack-rewrite')
+  gem.add_dependency('rack-git')
   gem.add_dependency('org-ruby')
 
   gem.add_development_dependency('rake')

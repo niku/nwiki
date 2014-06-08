@@ -6,12 +6,22 @@ GIT
   specs:
     rugged (0.19.0)
 
+GIT
+  remote: git@github.com:niku/rack-git.git
+  revision: 89ecebef2a29e2effa2e97b7f44e78750799b43c
+  specs:
+    rack-git (0.0.1)
+      rack
+      rugged
+
 PATH
   remote: .
   specs:
     nwiki (0.2.0)
       org-ruby
       rack
+      rack-git
+      rack-rewrite
 
 GEM
   remote: https://rubygems.org/
@@ -53,6 +63,7 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
+    rack-rewrite (1.5.0)
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.3.2)
@@ -95,6 +106,7 @@ DEPENDENCIES
   guard
   guard-rspec
   nwiki!
+  rack-git!
   rack-test
   rake
   rspec
