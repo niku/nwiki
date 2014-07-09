@@ -12,7 +12,7 @@ module Nwiki
     class App
       Rack::Mime::MIME_TYPES.merge!({ ".org" => "text/html" })
 
-      def template(wiki, page_title, html)
+      TEMPLATE = -> (wiki, page_title, html) {
         erb = ERB.new <<EOS
 <!DOCTYPE HTML>
 <html>
@@ -46,9 +46,9 @@ module Nwiki
 </html>
 EOS
         erb.result(binding).force_encoding("UTF-8")
-      end
+      }
 
-      FILE_CONVERTER = -> (wiki, file, env) {
+      FILE_CONVERTER = -> (wiki, template, file, env) {
         path = Rack::Utils.unescape(env["PATH_INFO"])
         return file if ::File.extname(path) != ".org"
         file.force_encoding("UTF-8")
@@ -58,23 +58,23 @@ EOS
                else
                  file
                end
-        template(wiki, page_title, html)
-      }
+        template.call(wiki, page_title, html)
+      }.curry
 
-      DIRECTORY_CONVERTER = -> (wiki, file, env) {
+      DIRECTORY_CONVERTER = -> (wiki, template, file, env) {
         path = Rack::Utils.unescape(env["PATH_INFO"])
         if path == '/'
           page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
           html = wiki.find_directory("/").to_html
-          template(wiki, page_title, html)
+          template.call(wiki, page_title, html)
         else
           dirs.each { |d| d.force_encoding("UTF-8") }
           page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
           list = dirs.map { |e| %Q!<li><a href="#{e.gsub(/\.org/, '')}">#{e.gsub(/\.org/, '')}</a></li>! }
           html = "<ul><li><a href=\"../\">../</a></li>#{list.join}</ul>"
-          template(wiki, page_title, html)
+          template.call(wiki, page_title, html)
         end
-      }
+      }.curry
 
       def initialize git_repo_path
         wiki = Core::Wiki.new git_repo_path
@@ -93,7 +93,9 @@ EOS
                 path !~ /\/$/ && File.extname(path) !~ /(png|jpg|gif)/
               }
             end
-            run Rack::Git::File.new git_repo_path, file_converter: FILE_CONVERTER.curry(wiki), directory_converter: DIRECTORY_CONVERTER.curry(wiki)
+            run Rack::Git::File.new git_repo_path,
+              file_converter: FILE_CONVERTER.call(wiki, TEMPLATE),
+              directory_converter: DIRECTORY_CONVERTER.call(wiki, TEMPLATE)
           end
         }
       end
