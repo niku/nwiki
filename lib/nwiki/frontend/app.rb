@@ -52,7 +52,7 @@ EOS
         path = Rack::Utils.unescape(env["PATH_INFO"])
         return file if ::File.extname(path) != ".org"
         file.force_encoding("UTF-8")
-        page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
+        page_title = Nwiki::Utils.page_title(path)
         html = if ::File.extname(path) == ".org"
                  Orgmode::Parser.new(file, offset: 1).to_html
                else
@@ -64,12 +64,12 @@ EOS
       DIRECTORY_CONVERTER = -> (wiki, template, file, env) {
         path = Rack::Utils.unescape(env["PATH_INFO"])
         if path == '/'
-          page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
+          page_title = Nwiki::Utils.page_title(path)
           html = wiki.find_directory("/").to_html
           template.call(wiki, page_title, html)
         else
           dirs.each { |d| d.force_encoding("UTF-8") }
-          page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
+          page_title = Nwiki::Utils.page_title(path)
           list = dirs.map { |e| %Q!<li><a href="#{e.gsub(/\.org/, '')}">#{e.gsub(/\.org/, '')}</a></li>! }
           html = "<ul><li><a href=\"../\">../</a></li>#{list.join}</ul>"
           template.call(wiki, page_title, html)
