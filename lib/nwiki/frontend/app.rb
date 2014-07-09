@@ -59,24 +59,25 @@ EOS
         template(wiki, page_title, html)
       }
 
+      DIRECTORY_CONVERTER = -> (wiki, file, env) {
+        path = Rack::Utils.unescape(env["PATH_INFO"])
+        if path == '/'
+          page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
+          html = wiki.find_directory("/").to_html
+          template(wiki, page_title, html)
+        else
+          dirs.each { |d| d.force_encoding("UTF-8") }
+          page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
+          list = dirs.map { |e| %Q!<li><a href="#{e.gsub(/\.org/, '')}">#{e.gsub(/\.org/, '')}</a></li>! }
+          html = "<ul><li><a href=\"../\">../</a></li>#{list.join}</ul>"
+          template(wiki, page_title, html)
+        end
+      }
+
       def initialize git_repo_path
         Rack::Mime::MIME_TYPES.merge!({ ".org" => "text/html" })
 
         wiki = Core::Wiki.new git_repo_path
-        directory_converter = -> (dirs, env) {
-          path = Rack::Utils.unescape(env["PATH_INFO"])
-          if path == '/'
-            page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
-            html = wiki.find_directory("/").to_html
-            template(wiki, page_title, html)
-          else
-            dirs.each { |d| d.force_encoding("UTF-8") }
-            page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
-            list = dirs.map { |e| %Q!<li><a href="#{e.gsub(/\.org/, '')}">#{e.gsub(/\.org/, '')}</a></li>! }
-            html = "<ul><li><a href=\"../\">../</a></li>#{list.join}</ul>"
-            template(wiki, page_title, html)
-          end
-        }
 
         @builder = Rack::Builder.new {
           map '/' do
@@ -92,7 +93,7 @@ EOS
                 path !~ /\/$/ && File.extname(path) !~ /(png|jpg|gif)/
               }
             end
-            run Rack::Git::File.new git_repo_path, file_converter: FILE_CONVERTER.curry(wiki), directory_converter: directory_converter
+            run Rack::Git::File.new git_repo_path, file_converter: FILE_CONVERTER.curry(wiki), directory_converter: DIRECTORY_CONVERTER.curry(wiki)
           end
         }
       end
