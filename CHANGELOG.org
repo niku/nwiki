@@ -1,6 +1,6 @@
 * CHANGELOG
-** 0.2.1 (NOT RELEASED YET)
-
+** 0.2.1
+ - Refactoring
 ** 0.2.0
  - [improvement] Use rack module (i.e. rack-rewrite, rack-git)
 ** 0.1.11
