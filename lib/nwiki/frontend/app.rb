@@ -66,7 +66,7 @@ EOS
         else
           dirs.each { |d| d.force_encoding("UTF-8") }
           page_title = Nwiki::Utils.page_title(path)
-          list = dirs.map { |e| %Q!<li><a href="#{e.gsub(/\.org/, '')}">#{e.gsub(/\.org/, '')}</a></li>! }
+          list = dirs.map { |e| %Q!<li><a href="#{Nwiki::Utils.strip_org(e)}">#{Nwiki::Utils.strip_org(e)}</a></li>! }
           html = "<ul><li><a href=\"../\">../</a></li>#{list.join}</ul>"
           template.call(wiki, page_title, html)
         end

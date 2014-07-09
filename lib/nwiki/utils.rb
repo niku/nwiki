@@ -7,5 +7,9 @@ module Nwiki
     def self.orgfile? path
       ::File.extname(path) == ".org"
     end
+
+    def strip_org path
+      path.gsub(/\.org$/) { '' }
+    end
   end
 end
