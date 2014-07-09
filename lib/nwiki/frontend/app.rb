@@ -53,11 +53,7 @@ EOS
         return file unless Nwiki::Utils.orgfile?(path)
         file.force_encoding("UTF-8")
         page_title = Nwiki::Utils.page_title(path)
-        html = if Nwiki::Utils.orgfile?(path)
-                 Orgmode::Parser.new(file, offset: 1).to_html
-               else
-                 file
-               end
+        html = Orgmode::Parser.new(file, offset: 1).to_html
         template.call(wiki, page_title, html)
       }.curry
 
