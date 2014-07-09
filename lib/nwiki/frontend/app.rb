@@ -46,22 +46,23 @@ EOS
         erb.result(binding).force_encoding("UTF-8")
       end
 
+      FILE_CONVERTER = -> (wiki, file, env) {
+        path = Rack::Utils.unescape(env["PATH_INFO"])
+        return file if ::File.extname(path) != ".org"
+        file.force_encoding("UTF-8")
+        page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
+        html = if ::File.extname(path) == ".org"
+                 Orgmode::Parser.new(file, offset: 1).to_html
+               else
+                 file
+               end
+        template(wiki, page_title, html)
+      }
+
       def initialize git_repo_path
         Rack::Mime::MIME_TYPES.merge!({ ".org" => "text/html" })
 
         wiki = Core::Wiki.new git_repo_path
-        file_converter = -> (file, env) {
-          path = Rack::Utils.unescape(env["PATH_INFO"])
-          return file if ::File.extname(path) != ".org"
-          file.force_encoding("UTF-8")
-          page_title = path.empty? ? '' : "#{path.gsub(/\.org$/, '').gsub(/^\//, '')} - "
-          html = if ::File.extname(path) == ".org"
-                   Orgmode::Parser.new(file, offset: 1).to_html
-                 else
-                   file
-                 end
-          template(wiki, page_title, html)
-        }
         directory_converter = -> (dirs, env) {
           path = Rack::Utils.unescape(env["PATH_INFO"])
           if path == '/'
@@ -91,7 +92,7 @@ EOS
                 path !~ /\/$/ && File.extname(path) !~ /(png|jpg|gif)/
               }
             end
-            run Rack::Git::File.new git_repo_path, file_converter: file_converter, directory_converter: directory_converter
+            run Rack::Git::File.new git_repo_path, file_converter: FILE_CONVERTER.curry(wiki), directory_converter: directory_converter
           end
         }
       end
