@@ -51,8 +51,8 @@ EOS
       FILE_CONVERTER = -> (wiki, template, file, env) {
         path = Rack::Utils.unescape(env["PATH_INFO"])
         return file unless Nwiki::Utils.orgfile?(path)
-        file.force_encoding("UTF-8")
         page_title = Nwiki::Utils.page_title(path)
+        file.force_encoding("UTF-8")
         html = Orgmode::Parser.new(file, offset: 1).to_html
         template.call(wiki, page_title, html)
       }.curry
