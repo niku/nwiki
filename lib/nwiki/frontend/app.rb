@@ -10,6 +10,8 @@ require_relative 'app/html'
 module Nwiki
   module Frontend
     class App
+      Rack::Mime::MIME_TYPES.merge!({ ".org" => "text/html" })
+
       def template(wiki, page_title, html)
         erb = ERB.new <<EOS
 <!DOCTYPE HTML>
@@ -75,8 +77,6 @@ EOS
       }
 
       def initialize git_repo_path
-        Rack::Mime::MIME_TYPES.merge!({ ".org" => "text/html" })
-
         wiki = Core::Wiki.new git_repo_path
 
         @builder = Rack::Builder.new {
