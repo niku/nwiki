@@ -1,5 +1,5 @@
 * CHANGELOG
-** 0.2.2 (NOT RELEASED YET)
+** 0.2.2
  - [fix] Content-Type includes encoding (for safari issue)
 ** 0.2.1
  - Refactoring
