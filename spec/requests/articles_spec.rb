@@ -26,6 +26,7 @@ module Nwiki
         let(:path) { '/articles/' }
 
         it { expect(subject).to be_ok }
+        it { expect(subject["Content-Type"]).to include("charset=UTF-8") }
         it { expect(subject).to match %r!\bfoo\b! }
         it { expect(subject).to match %r!\b1\b! }
         it { expect(subject).to match %r!\b日本語ディレクトリ\b! }
@@ -59,6 +60,7 @@ module Nwiki
         let(:path) { '/articles/foo' }
 
         it { expect(subject).to be_ok }
+        it { expect(subject["Content-Type"]).to include("charset=UTF-8") }
         it { expect(subject).to match %r!<title[^>]*>foo - ヽ（´・肉・｀）ノログ</title>!}
         it { expect(subject).to match %r!<h2[^>]*>Foo</h2>! }
         it { expect(subject).to match %r!<h3[^>]*>Bar</h3>! }
