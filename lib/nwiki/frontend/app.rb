@@ -68,7 +68,7 @@ EOS
           list = dirs.
             each { |d| d.force_encoding("UTF-8") }.
             map  { |e| Nwiki::Utils.strip_org(e) }.
-            map  { |e| %Q!<li><a href="#{e}">#{e}</a></li>! }
+            map  { |e| %Q!<li><a href="#{e.gsub('#', '%23')}">#{e}</a></li>! }
           html = "<ul><li><a href=\"../\">../</a></li>#{list.join}</ul>"
           template.call(wiki, page_title, html)
         end

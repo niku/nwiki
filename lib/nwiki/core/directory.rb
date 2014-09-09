@@ -26,7 +26,7 @@ module Nwiki
         '<ul>' + @list.map { |e|
           root = './'
           root << @path if @path != '/'
-          %Q!<li><a href="#{root}#{e}">#{e}</a></li>!
+          %Q!<li><a href="#{root}#{e.gsub('#', '%23')}">#{e}</a></li>!
         }.join + '</ul>'
       end
     end
