@@ -1,4 +1,5 @@
 * CHANGELOG
+** 0.2.4 (NOT RELEASED YET)
 ** 0.2.3
  - [fix] Escape link url
 ** 0.2.2
