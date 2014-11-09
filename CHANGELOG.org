@@ -1,4 +1,6 @@
 * CHANGELOG
+** 0.2.5
+ - Use Ruby2.1.4
 ** 0.2.4
  - Remove github-ribbon
 ** 0.2.3
