@@ -16,7 +16,7 @@ GIT
 PATH
   remote: .
   specs:
-    nwiki (0.2.8)
+    nwiki (0.2.9)
       org-ruby
       rack
       rack-git
@@ -38,7 +38,7 @@ GEM
     netrc (0.10.3)
     org-ruby (0.9.12)
       rubypants (~> 0.2)
-    power_assert (0.2.2)
+    power_assert (0.2.3)
     rack (1.6.0)
     rack-rewrite (1.5.1)
     rack-test (0.6.3)
