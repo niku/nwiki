@@ -32,4 +32,32 @@ class RequestTest < Test::Unit::TestCase
       end
     end
   end
+
+  sub_test_case %Q(Get "/articles/") do
+    setup do
+      get "/articles/"
+    end
+
+    test "response is ok" do
+      assert do
+        last_response.ok?
+      end
+    end
+
+    test "charset is UTF-8" do
+      assert do
+        last_response["Content-Type"].include? "charset=UTF-8"
+      end
+    end
+
+    data("contains foo" => "foo",
+         "contains 1" => "1",
+         "contains 日本語ディレクトリ" => "日本語ディレクトリ")
+    def test_body_include?(data)
+      expected = data
+      assert do
+        last_response.body.include? expected
+      end
+    end
+  end
 end
