@@ -14,31 +14,34 @@ module Nwiki
 
       TEMPLATE = -> (wiki, page_title, html) {
         erb = ERB.new <<EOS
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
-  <title><%= page_title %><%= wiki.title %></title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= page_title %><%= wiki.title %></title>
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="/nwiki.css">
 </head>
+
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12"><h1><a href="/articles/"><%= wiki.title %></a></h1></div>
+  <div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+      <h1><a class="pure-menu-heading" href="/articles/"><%= wiki.title %></a></h1>
+      <h2><%= wiki.subtitle %></h2>
     </div>
-    <div class="row">
-      <div class="col-md-12"><h2"><small><%= wiki.subtitle %></small></h2></div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <%= html %>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="pure-g">
+        <div class="pure-u-1">
+          <%= html %>
+        </div>
       </div>
     </div>
   </div>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
 EOS
