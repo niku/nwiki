@@ -16,7 +16,7 @@ GIT
 PATH
   remote: .
   specs:
-    nwiki (0.3.1)
+    nwiki (0.3.2)
       org-ruby
       rack
       rack-git
