@@ -9,7 +9,7 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 body {
-    line-height: 1.7em;
+    line-height: 1.2em;
     color: #7f8c8d;
     font-size: 13px;
 }
