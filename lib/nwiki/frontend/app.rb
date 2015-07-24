@@ -49,7 +49,7 @@ module Nwiki
   <div class="footer l-box is-center">
   </div>
 
-  <script>Array.forEach(document.getElementsByClassName("src"), function(elem) { hljs.highlightBlock(elem) });</script>
+  <script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>
 </body>
 </html>
 EOS
