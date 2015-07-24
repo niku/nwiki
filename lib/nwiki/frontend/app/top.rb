@@ -18,35 +18,43 @@ module Nwiki
 
       def html
         erb = ERB.new <<EOS
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
   <meta http-equiv="refresh" content="5;URL=http://niku.name/articles/">
-  <title><%= @wiki.title %></title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @wiki.title %></title>
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/pure-min.css">
+  <link rel="stylesheet" href="/nwiki.css">
+  <link rel="stylesheet" href="/default.min.css">
+  <link rel="stylesheet" href="/solarized_dark.css">
+  <script src="/highlight.min.js"></script>
 </head>
+
 <body>
-  <a href="https://github.com/niku/nikulog">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub">
-  </a>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8"><h1><a href="/articles/"><%= @wiki.title %></a></h1></div>
+  <div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+      <h1><a class="pure-menu-heading" href="/articles/"><%= @wiki.title %></a></h1>
+      <h2><%= @wiki.subtitle %></h2>
     </div>
-    <div class="row">
-      <div class="col-md-12"><h2"><small><%= @wiki.subtitle %></small></h2></div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <p>ここまだ何にも作ってないんす．<a href="./articles/">articles</a>以下が動いているのでそっちを見てね．5秒経つと自動で移動します．</p>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="content">
+      <div class="pure-g">
+        <div class="pure-u-1">
+          <p>ここまだ何にも作ってないんす．<a href="./articles/">articles</a>以下が動いているのでそっちを見てね．5秒経つと自動で移動します．</p>
+        </div>
       </div>
     </div>
   </div>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <div class="footer l-box is-center">
+  </div>
+
+  <script>Array.forEach(document.getElementsByClassName("src"), function(elem) { hljs.highlightBlock(elem) });</script>
 </body>
 </html>
 EOS
