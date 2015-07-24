@@ -24,6 +24,7 @@ module Nwiki
   <link rel="stylesheet" href="/pure-min.css">
   <link rel="stylesheet" href="/nwiki.css">
   <link rel="stylesheet" href="/default.min.css">
+  <link rel="stylesheet" href="/solarized_dark.css">
   <script src="/highlight.min.js"></script>
 </head>
 

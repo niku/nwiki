@@ -9,7 +9,8 @@ if ENV['RACK_ENV'] == "development"
         "/pure-min.css" => "public/pure-min.css",
         "/nwiki.css" => "public/nwiki.css",
         "/default.min.css" => "public/default.min.css",
-        "/highlight.min.js" => "public/highlight.min.js"
+        "/highlight.min.js" => "public/highlight.min.js",
+        "/solarized_dark.css" => "public/solarized_dark.css"
       }
 end
 
