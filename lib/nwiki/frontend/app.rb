@@ -21,7 +21,7 @@ module Nwiki
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= page_title %><%= wiki.title %></title>
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="/pure-min.css">
   <link rel="stylesheet" href="/nwiki.css">
 </head>
 
