@@ -42,6 +42,9 @@ module Nwiki
       </div>
     </div>
   </div>
+
+  <div class="footer l-box is-center">
+  </div>
 </body>
 </html>
 EOS
