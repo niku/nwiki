@@ -1,6 +1,7 @@
 * CHANGELOG
 ** 0.3.1
  - Update Design
+ - Syntax Highlighting
 ** 0.3.0
  - Use rack-tracker
 ** 0.2.11

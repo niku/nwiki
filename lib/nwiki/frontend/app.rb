@@ -23,6 +23,8 @@ module Nwiki
   <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
   <link rel="stylesheet" href="/pure-min.css">
   <link rel="stylesheet" href="/nwiki.css">
+  <link rel="stylesheet" href="/default.min.css">
+  <script src="/highlight.min.js"></script>
 </head>
 
 <body>
@@ -45,6 +47,8 @@ module Nwiki
 
   <div class="footer l-box is-center">
   </div>
+
+  <script>Array.forEach(document.getElementsByClassName("src"), function(elem) { hljs.highlightBlock(elem) });</script>
 </body>
 </html>
 EOS
