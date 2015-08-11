@@ -96,7 +96,7 @@ EOS
             use Rack::Rewrite do
               rewrite %r{^(.*)$}, '$1.org', if: -> (env) {
                 path = Rack::Utils.unescape(env["PATH_INFO"])
-                path !~ /\/$/ && File.extname(path) !~ /(png|jpg|gif)/
+                path !~ /\/$/ && File.extname(path) !~ /(png|jpg|gif|svg)/
               }
             end
             run Rack::Git::File.new git_repo_path,

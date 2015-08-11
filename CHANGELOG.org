@@ -1,5 +1,6 @@
 * CHANGELOG
 ** 0.3.2
+ - Set SVG as binaryfile
 ** 0.3.1
  - Update Design
  - Syntax Highlighting
