@@ -13,46 +13,8 @@ module Nwiki
       Rack::Mime::MIME_TYPES.merge!({ ".org" => "text/html" })
 
       TEMPLATE = -> (wiki, page_title, html) {
-        erb = ERB.new <<EOS
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= page_title %><%= wiki.title %></title>
-  <link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/articles.xml">
-  <link rel="stylesheet" href="/pure-min.css">
-  <link rel="stylesheet" href="/nwiki.css">
-  <link rel="stylesheet" href="/default.min.css">
-  <link rel="stylesheet" href="/solarized_dark.css">
-  <script src="/highlight.min.js"></script>
-</head>
-
-<body>
-  <div class="header">
-    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-      <h1><a class="pure-menu-heading" href="/articles/"><%= wiki.title %></a></h1>
-      <h2><%= wiki.subtitle %></h2>
-    </div>
-  </div>
-
-  <div class="content-wrapper">
-    <div class="content">
-      <div class="pure-g">
-        <div class="pure-u-1">
-          <%= html %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer l-box is-center">
-  </div>
-
-  <script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>
-</body>
-</html>
-EOS
+        template_file = Pathname.new(__FILE__).parent.join("template.html.erb")
+        erb = ERB.new(template_file.read)
         erb.result(binding).force_encoding("UTF-8")
       }
 
