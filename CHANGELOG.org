@@ -1,5 +1,6 @@
 * CHANGELOG
 ** 0.3.4
+ - Add share buttons to fotter
 ** 0.3.3
  - Update Design
 ** 0.3.2
