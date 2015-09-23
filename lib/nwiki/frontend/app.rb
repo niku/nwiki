@@ -14,7 +14,7 @@ module Nwiki
 
       TEMPLATE = -> (wiki, page_title, html) {
         template_file = Pathname.new(__FILE__).parent.join("template.html.erb")
-        erb = ERB.new(template_file.read)
+        erb = ERB.new(template_file.read.force_encoding("UTF-8"))
         erb.result(binding).force_encoding("UTF-8")
       }
 
