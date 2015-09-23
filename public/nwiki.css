@@ -9,6 +9,18 @@ html {
   margin: 0 auto;
 }
 
+code {
+    background: #002b36;
+    color: #839496;
+    padding: 0.2em;
+}
+
+blockquote{
+    background: #eeeeee;
+    font-style: italic;
+    padding: 0.2em 1em;
+}
+
 .brand-title,
 .brand-tagline {
     display: inline;
@@ -28,16 +40,4 @@ html {
 .brand-tagline {
     font-weight: 100;
     font-size: 1em;
-}
-
-code {
-    background: #002b36;
-    color: #839496;
-    padding: 0.2em;
-}
-
-blockquote{
-    background: #eeeeee;
-    font-style: italic;
-    padding: 0.2em 1em;
 }
