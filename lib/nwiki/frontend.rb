@@ -1,1 +1,0 @@
-require 'nwiki/frontend/app'
