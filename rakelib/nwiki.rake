@@ -1,14 +1,20 @@
 namespace :nwiki do
   temporary_path = ENV.fetch("NWIKI_TEMPORARY_PATH", "tmp")
 
-  desc "clone a git repository via network"
-  task :clone do
+  desc "get head of a remote git repository"
+  task :get_head do
     require "rugged"
-    Rugged::Repository.clone_at(ENV.fetch("NWIKI_REPO"), temporary_path)
+    if File.exist?(temporary_path)
+      repository = Rugged::Repository.discover(temporary_path)
+      repository.fetch("origin")
+      repository.reset("FETCH_HEAD", :hard)
+    else
+      Rugged::Repository.clone_at(ENV.fetch("NWIKI_REPO"), temporary_path)
+    end
   end
 
   desc "convert from org to html"
-  task convert: :clone do
+  task :convert do
     require "org-ruby"
     FileList.new("#{temporary_path}/**/*.org").each do |path|
       new_path = File.join(File.dirname(path), File.basename(path, ".org") + ".html")
