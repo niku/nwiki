@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rugged"
   spec.add_dependency "org-ruby", "~> 0.9"
+  spec.add_dependency "oga", "~> 2.2"
 end
