@@ -13,6 +13,7 @@ namespace :nwiki do
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width-device-width,initial-scale=1">
 <title><%= title %> - <%= ENV['NWIKI_SITE_NAME'] %></title>
 <meta content="<%= title %> - <%= ENV['NWIKI_SITE_NAME'] %>" name="title">
 <% if description -%>

@@ -71,3 +71,9 @@ article table td {
     border: 1px solid;
     padding: 1em;
 }
+
+@media screen and (max-device-width: 480px) {
+    article img {
+        width: 100%;
+    }
+}
