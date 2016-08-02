@@ -153,7 +153,7 @@ __EOD__
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', #{tracking_id}, 'auto');
+  ga('create', '#{tracking_id}', 'auto');
   ga('send', 'pageview');
 
 </script>
