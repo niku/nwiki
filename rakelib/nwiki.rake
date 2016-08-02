@@ -120,6 +120,7 @@ __EOD__
     require "net/http"
     require "pathname"
     Dir.chdir temporary_path do
+      File.write("normalize.min.css", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css")))
       File.write("default.min.css", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css")))
       File.write("solarized-dark.css", Net::HTTP.get(URI.parse("https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/solarized-dark.css")))
       File.write("highlight.min.js", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js")))
@@ -135,6 +136,7 @@ __EOD__
                         ""
                       end
       parsed_document = Oga.parse_html(File.read(path))
+      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}normalize.min.css">!).children.first
       parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">!).children.first
       parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">!).children.first
       parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}highlight.min.js"></script>!).children.first
