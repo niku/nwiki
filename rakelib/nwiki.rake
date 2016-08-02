@@ -121,6 +121,7 @@ __EOD__
     require "pathname"
     Dir.chdir temporary_path do
       File.write("default.min.css", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css")))
+      File.write("solarized-dark.css", Net::HTTP.get(URI.parse("https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/solarized-dark.css")))
       File.write("highlight.min.js", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js")))
       File.write("elixir.min.js", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/languages/elixir.min.js")))
     end
@@ -135,6 +136,7 @@ __EOD__
                       end
       parsed_document = Oga.parse_html(File.read(path))
       parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">!).children.first
+      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">!).children.first
       parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}highlight.min.js"></script>!).children.first
       parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}elixir.min.js"></script>!).children.first
       parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>!).children.first
