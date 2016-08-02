@@ -1,0 +1,65 @@
+html {
+  background-color: #002b36;
+  color: #93a1a1;
+}
+body {
+  margin: 1em;
+}
+hgroup h1 a {
+  font-size: 200%;
+  color: #dc322f;
+  text-decoration: none;
+}
+hgroup h2 {
+  color: #dc322f;
+}
+article h1 {
+  color: #cb4b16;
+}
+article h1:before {
+  content: "*";
+  margin: 0 0.3em;
+}
+article h2 {
+  color: #859900;
+}
+article h2:before {
+  content: "**";
+  margin: 0 0.3em;
+}
+article h3 {
+  color: #268bd2;
+}
+article h3:before {
+  content: "***";
+  margin: 0 0.3em;
+}
+article h4 {
+  color: #b58900;
+}
+article h4:before {
+  content: "****";
+  margin: 0 0.3em;
+}
+article h5 {
+  color: #2aa198;
+}
+article h5:before {
+  content: "*****";
+  margin: 0 0.3em;
+}
+article h6 {
+  color: #859900;
+}
+article h6:before {
+  content: "******";
+  margin: 0 0.3em;
+}
+article a {
+  color: #b58900;
+}
+article pre {
+  border: solid 1px;
+  margin: 1em;
+  padding: 1em;
+}
