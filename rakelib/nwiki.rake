@@ -1,6 +1,10 @@
 require "rake/clean"
 require "erb"
 
+# An environment variable which is setted multibyte in Dockerhub get garbled.
+# Workaround here
+ENV["NWIKI_SITE_NAME"] = "ヽ（´・肉・｀）ノログ"
+
 namespace :nwiki do
   temporary_path = ENV.fetch("NWIKI_TEMPORARY_PATH", "tmp")
   CLOBBER.include(temporary_path)
