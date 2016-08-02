@@ -63,3 +63,11 @@ article pre {
   margin: 1em;
   padding: 1em;
 }
+article table {
+  border: 1px solid;
+  margin: 1em;
+}
+article table td {
+  border: 1px solid;
+  padding: 1em;
+}
