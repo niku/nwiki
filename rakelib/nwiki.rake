@@ -61,7 +61,7 @@ __EOD__
     FileList.new("#{temporary_path}/**/*.org").each do |path|
       new_path = File.join(File.dirname(path), File.basename(path, ".org") + ".html.contents")
       doc = File.read(path)
-      html = Orgmode::Parser.new(doc).to_html
+      html = Orgmode::Parser.new(doc, allow_include_files: true).to_html
       File.write(new_path, html)
       File.delete(path)
     end
