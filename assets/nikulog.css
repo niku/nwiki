@@ -71,6 +71,10 @@ article table td {
     border: 1px solid;
     padding: 1em;
 }
+article blockquote p::before {
+    content: ">";
+    margin: 0 0.5em 0 0;
+}
 
 @media screen and (max-device-width: 480px) {
     hgroup h1 a {
