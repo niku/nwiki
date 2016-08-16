@@ -73,6 +73,9 @@ article table td {
 }
 
 @media screen and (max-device-width: 480px) {
+    hgroup h1 a {
+        font-size: 100%;
+    }
     article img {
         width: 100%;
     }
