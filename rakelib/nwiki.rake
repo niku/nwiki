@@ -138,13 +138,13 @@ __EOD__
                         ""
                       end
       parsed_document = Oga.parse_html(File.read(path))
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}normalize.min.css">!).children.first
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">!).children.first
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">!).children.first
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}nikulog.css">!).children.first
-      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}highlight.min.js"></script>!).children.first
-      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}elixir.min.js"></script>!).children.first
-      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>!).children.first
+      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}normalize.min.css">\n!).children.first
+      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">\n!).children.first
+      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">\n!).children.first
+      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}nikulog.css">\n!).children.first
+      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}highlight.min.js"></script>\n!).children.first
+      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}elixir.min.js"></script>\n!).children.first
+      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>\n!).children.first
       File.write(path, parsed_document.to_xml)
     end
   end
