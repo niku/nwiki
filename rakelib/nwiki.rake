@@ -12,7 +12,7 @@ namespace :nwiki do
   template = ERB.new(<<__EOD__, nil, "-")
 <!DOCTYPE html>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title><%= title %> - <%= ENV['NWIKI_SITE_NAME'] %></title>
