@@ -120,12 +120,12 @@ __EOD__
     require "net/http"
     require "pathname"
     Dir.chdir temporary_path do
-      File.write("normalize.min.css", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css")))
-      File.write("default.min.css", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css")))
+      File.write("normalize.min.css", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css")))
+      File.write("default.min.css", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css")))
       File.write("solarized-dark.css", Net::HTTP.get(URI.parse("https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/solarized-dark.css")))
       File.write("nikulog.css", (Pathname.new(__FILE__).parent.parent + "assets" + "nikulog.css").read)
-      File.write("highlight.min.js", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js")))
-      File.write("elixir.min.js", Net::HTTP.get(URI.parse("http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/languages/elixir.min.js")))
+      File.write("highlight.min.js", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js")))
+      File.write("elixir.min.js", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/languages/elixir.min.js")))
     end
 
     root_path = Pathname.new(".")
