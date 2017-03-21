@@ -11,7 +11,7 @@ namespace :nwiki do
 
   template = ERB.new(<<__EOD__, nil, "-")
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width,initial-scale=1">
@@ -33,10 +33,8 @@ namespace :nwiki do
 <meta property="og:site_name" content="<%= ENV['NWIKI_SITE_NAME'] %>"/>
 </head>
 <body>
-<hgroup>
-  <h1><a href="<%= ENV['NWIKI_ENDPOINT'] %>"><%= ENV['NWIKI_SITE_NAME'] %></a></h1>
-  <h2><%= ENV['NWIKI_TAGLINE'] %></h2>
-</hgroup>
+<h1><a href="<%= ENV['NWIKI_ENDPOINT'] %>"><%= ENV['NWIKI_SITE_NAME'] %></a></h1>
+<h2><%= ENV['NWIKI_TAGLINE'] %></h2>
 <article>
 <%= html_contents -%>
 </article>
