@@ -10,6 +10,7 @@ namespace :nwiki do
   CLOBBER.include(temporary_path)
 
   template = ERB.new(<<__EOD__, nil, "-")
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
