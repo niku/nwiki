@@ -68,7 +68,7 @@ __EOD__
 
   desc "add metadata to converted html contents"
   task :add_metadata do
-    require "oga"
+    require "nokogiri"
     endpoint = ENV["NWIKI_ENDPOINT"]
     FileList.new("#{temporary_path}/**/*.html.contents").each do |path|
       new_path = File.join(File.dirname(path), File.basename(path, ".contents"))
@@ -82,7 +82,7 @@ __EOD__
             end
       title = File.basename(path, ".html.contents")
       html_contents = File.read(path)
-      parsed_document = Oga.parse_html(html_contents)
+      parsed_document = Nokogiri::HTML(html_contents)
       description = if desc = parsed_document.at_xpath("//p")
                       desc.text
                     end
@@ -136,23 +136,23 @@ __EOD__
                       else
                         ""
                       end
-      parsed_document = Oga.parse_html(File.read(path))
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}normalize.min.css">\n!).children.first
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">\n!).children.first
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">\n!).children.first
-      parsed_document.at_xpath("//head").children << Oga.parse_html(%Q!<link rel="stylesheet" href="#{relative_path}nikulog.css">\n!).children.first
-      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}highlight.min.js"></script>\n!).children.first
-      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script src="#{relative_path}elixir.min.js"></script>\n!).children.first
-      parsed_document.at_xpath("//body").children << Oga.parse_html(%Q!<script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>\n!).children.first
+      parsed_document = Nokogiri::HTML(File.read(path))
+      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}normalize.min.css">\n!).children.first
+      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">\n!).children.first
+      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">\n!).children.first
+      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}nikulog.css">\n!).children.first
+      parsed_document.at_xpath("//body").children << Nokogiri::HTML(%Q!<script src="#{relative_path}highlight.min.js"></script>\n!).children.first
+      parsed_document.at_xpath("//body").children << Nokogiri::HTML(%Q!<script src="#{relative_path}elixir.min.js"></script>\n!).children.first
+      parsed_document.at_xpath("//body").children << Nokogiri::HTML(%Q!<script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>\n!).children.first
       File.write(path, parsed_document.to_xml)
     end
   end
 
   desc "add analytics to html contents"
   task :add_analytics do
-    require "oga"
+    require "nokogiri"
     tracking_id = ENV["NWIKI_TRACKING_ID"]
-    script_tag = Oga.parse_html(<<__EOD__).children.first
+    script_tag = Nokogiri::HTML(<<__EOD__).children.first
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -166,7 +166,7 @@ __EOD__
 
 __EOD__
     FileList.new("#{temporary_path}/**/*.html").each do |path|
-      parsed_document = Oga.parse_html(File.read(path))
+      parsed_document = Nokogiri::HTML(File.read(path))
       # head タグ内の最後に script タグを追加する
       parsed_document.at_xpath("//head").children << script_tag
       File.write(path, parsed_document.to_xml)

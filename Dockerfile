@@ -1,19 +1,16 @@
-FROM ruby
+FROM debian:stable-slim
 MAINTAINER niku
 
-RUN mkdir /myapp
-COPY . /myapp
-WORKDIR /myapp
+ENV LANG=C.UTF-8
 
-RUN BUILD_DEPS="cmake" && \
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
+
+RUN DEPS="git ruby ruby-bundler rake ruby-rugged ruby-org ruby-nokogiri" && \
     apt-get update -qq && \
-    apt-get install --no-install-recommends --no-install-suggests -y $BUILD_DEPS && \
-    bundle install --path --jobs 4 && \
-    apt-get purge -y --auto-remove $BUILD_DEPS && \
-    apt-get clean && \
-    rm -rf \
-       /var/cache/apt/archives/* \
-       /var/lib/apt/lists/*
+    apt-get install --no-install-recommends --no-install-suggests -y $DEPS && \
+    bundle install --jobs 4
 
 ENTRYPOINT ["bundle", "exec"]
 CMD [ "irb" ]
