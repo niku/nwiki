@@ -1,6 +1,8 @@
 require "rake/clean"
 require "erb"
 
+require "nwiki"
+
 # An environment variable which is setted multibyte in Dockerhub get garbled.
 # Workaround here
 ENV["NWIKI_SITE_NAME"] = "ヽ（´・肉・｀）ノログ"
@@ -44,14 +46,7 @@ __EOD__
 
   desc "get head of a remote git repository"
   task :get_head do
-    require "rugged"
-    if File.exist?(temporary_path)
-      repository = Rugged::Repository.discover(temporary_path)
-      repository.fetch("origin")
-      repository.reset("FETCH_HEAD", :hard)
-    else
-      Rugged::Repository.clone_at(ENV.fetch("NWIKI_REPO"), temporary_path)
-    end
+    Nwiki.get_head(temporary_path, ENV.fetch("NWIKI_REPO"))
   end
 
   desc "convert from org to html contents"
