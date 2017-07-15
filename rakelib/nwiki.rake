@@ -51,14 +51,7 @@ __EOD__
 
   desc "convert from org to html contents"
   task :convert do
-    require "org-ruby"
-    FileList.new("#{temporary_path}/**/*.org").each do |path|
-      new_path = File.join(File.dirname(path), File.basename(path, ".org") + ".html.contents")
-      doc = File.read(path)
-      html = Orgmode::Parser.new(doc, allow_include_files: true).to_html
-      File.write(new_path, html)
-      File.delete(path)
-    end
+    Nwiki.convert(temporary_path)
   end
 
   desc "add metadata to converted html contents"
