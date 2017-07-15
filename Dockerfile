@@ -7,7 +7,7 @@ RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
-RUN DEPS="git ruby ruby-bundler rake ruby-rugged ruby-org ruby-nokogiri" && \
+RUN DEPS="git ruby ruby-bundler rake ruby-rugged ruby-nokogiri" && \
     apt-get update -qq && \
     apt-get install --no-install-recommends --no-install-suggests -y $DEPS && \
     bundle install --jobs 4

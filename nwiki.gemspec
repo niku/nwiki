@@ -31,6 +31,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake",    "= 10.5.0" # rake          https://packages.debian.org/stretch/rake
 
   spec.add_dependency "rugged",   "= 0.24.0"            # ruby-rugged   https://packages.debian.org/stretch/ruby-rugged
-  spec.add_dependency "org-ruby", "= 0.9.12"            # ruby-org      https://packages.debian.org/stretch/ruby-org
   spec.add_dependency "nokogiri", "= 1.6.8.1"           # ruby-nokogiri https://packages.debian.org/stretch/ruby-nokogiri
+  # It can't use ruby-org package in the debian.
+  # Because there are too many commits between the master branch and the tag which the package points.
+  spec.add_dependency "org-ruby", "~> 0.9"
 end
