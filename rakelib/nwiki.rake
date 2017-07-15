@@ -38,26 +38,6 @@ namespace :nwiki do
 
   desc "add analytics to html contents"
   task :add_analytics do
-    require "nokogiri"
-    tracking_id = ENV["NWIKI_TRACKING_ID"]
-    script_tag = Nokogiri::HTML(<<__EOD__).children.first
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', '#{tracking_id}', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-__EOD__
-    FileList.new("#{temporary_path}/**/*.html").each do |path|
-      parsed_document = Nokogiri::HTML(File.read(path))
-      # head タグ内の最後に script タグを追加する
-      parsed_document.at_xpath("//head").children << script_tag
-      File.write(path, parsed_document.to_xml)
-    end
+    Nwiki.add_analytics(temporary_path, ENV["NWIKI_TRACKING_ID"])
   end
 end
