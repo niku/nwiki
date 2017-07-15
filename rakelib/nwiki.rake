@@ -33,36 +33,7 @@ namespace :nwiki do
 
   desc "add highlightjs to html contents"
   task :add_highlightjs do
-    require "uri"
-    require "net/http"
-    require "pathname"
-    Dir.chdir temporary_path do
-      File.write("normalize.min.css", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css")))
-      File.write("default.min.css", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css")))
-      File.write("solarized-dark.css", Net::HTTP.get(URI.parse("https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/solarized-dark.css")))
-      File.write("nikulog.css", (Pathname.new(__FILE__).parent.parent + "assets" + "nikulog.css").read)
-      File.write("highlight.min.js", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js")))
-      File.write("elixir.min.js", Net::HTTP.get(URI.parse("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/languages/elixir.min.js")))
-    end
-
-    root_path = Pathname.new(".")
-    FileList.new("#{temporary_path}/**/*.html").each do |path|
-      dir_path_without_root = File.dirname(path).slice(temporary_path.length + 1..-1)
-      relative_path = if dir_path_without_root
-                        root_path.relative_path_from(Pathname.new(dir_path_without_root)).to_s + "/"
-                      else
-                        ""
-                      end
-      parsed_document = Nokogiri::HTML(File.read(path))
-      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}normalize.min.css">\n!).children.first
-      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}default.min.css">\n!).children.first
-      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}solarized-dark.css">\n!).children.first
-      parsed_document.at_xpath("//head").children << Nokogiri::HTML(%Q!<link rel="stylesheet" href="#{relative_path}nikulog.css">\n!).children.first
-      parsed_document.at_xpath("//body").children << Nokogiri::HTML(%Q!<script src="#{relative_path}highlight.min.js"></script>\n!).children.first
-      parsed_document.at_xpath("//body").children << Nokogiri::HTML(%Q!<script src="#{relative_path}elixir.min.js"></script>\n!).children.first
-      parsed_document.at_xpath("//body").children << Nokogiri::HTML(%Q!<script>Array.prototype.forEach.call(document.querySelectorAll("pre.src"), function(e){ hljs.highlightBlock(e) });</script>\n!).children.first
-      File.write(path, parsed_document.to_xml)
-    end
+    Nwiki.add_highlightjs(temporary_path)
   end
 
   desc "add analytics to html contents"
