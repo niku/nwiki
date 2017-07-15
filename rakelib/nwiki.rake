@@ -28,19 +28,7 @@ namespace :nwiki do
 
   desc "generate index"
   task :generate_index do
-    require 'uri'
-    list = Dir
-           .glob(File.join(temporary_path, "**", "*.html"))
-           .map { |e| e.slice(temporary_path.length + 1..-1) }
-           .map { |e| %Q(<li><a href="#{URI.escape(e)}">#{e.sub(/\.html$/, '')}</a></li>) }
-           .sort
-           .reverse
-    title = "index"
-    description = "index"
-    image_url = nil
-    url = ENV["NWIKI_ENDPOINT"] + "index.html"
-    html_contents = "<h1>index</h1><ul>" << list.join("\n") << "</ul>"
-    File.write(File.join(temporary_path, "index.html"), template.result(binding))
+    Nwiki.generate_index(temporary_path, ENV["NWIKI_ENDPOINT"])
   end
 
   desc "add highlightjs to html contents"
