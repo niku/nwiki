@@ -1,6 +1,9 @@
 require "nwiki/version"
+require "logger"
 
 module Nwiki
+  LOGGER = Logger.new(STDOUT)
+
   class << self
     def template
       ERB.new(<<__EOD__, nil, "-")
@@ -38,6 +41,7 @@ __EOD__
     end
 
     def get_head(temporary_path, repo_url)
+      LOGGER.info("get_head(#{temporary_path}, #{repo_url})")
       require "rugged"
       if File.exist?(temporary_path)
         repository = Rugged::Repository.discover(temporary_path)
@@ -49,6 +53,7 @@ __EOD__
     end
 
     def convert(temporary_path)
+      LOGGER.info("convert(#{temporary_path})")
       require "org-ruby"
       FileList.new("#{temporary_path}/**/*.org").each do |path|
         new_path = File.join(File.dirname(path), File.basename(path, ".org") + ".html.contents")
@@ -60,6 +65,7 @@ __EOD__
     end
 
     def add_metadata(temporary_path, endpoint)
+      LOGGER.info("add_metadata(#{temporary_path}, #{endpoint})")
       require "nokogiri"
       FileList.new("#{temporary_path}/**/*.html.contents").each do |path|
         new_path = File.join(File.dirname(path), File.basename(path, ".contents"))
@@ -89,6 +95,7 @@ __EOD__
     end
 
     def generate_index(temporary_path, endpoint)
+      LOGGER.info("generate_index(#{temporary_path}, #{endpoint})")
       require 'uri'
       list = Dir
                .glob(File.join(temporary_path, "**", "*.html"))
@@ -105,6 +112,7 @@ __EOD__
     end
 
     def add_highlightjs(temporary_path)
+      LOGGER.info("add_highlights(#{temporary_path})")
       require "rake" # For FileLIst module
       require "uri"
       require "net/http"
@@ -140,6 +148,7 @@ __EOD__
     end
 
     def add_analytics(temporary_path, tracking_id)
+      LOGGER.info("add_analytics(#{temporary_path}, #{tracking_id})")
       require "nokogiri"
       script_tag = <<__EOD__
 <script>
