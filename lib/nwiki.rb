@@ -1,4 +1,5 @@
 require "nwiki/version"
+require "nwiki/app"
 require "logger"
 
 module Nwiki

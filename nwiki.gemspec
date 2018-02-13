@@ -27,11 +27,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "= 1.13.6" # ruby-bundler  https://packages.debian.org/stretch/ruby-bundler
-  spec.add_development_dependency "rake",    "= 10.5.0" # rake          https://packages.debian.org/stretch/rake
+  spec.add_development_dependency "bundler",      "= 1.13.6" # ruby-bundler      https://packages.debian.org/stretch/ruby-bundler
+  spec.add_development_dependency "rake",         "= 10.5.0" # rake              https://packages.debian.org/stretch/rake
+  spec.add_development_dependency "test-unit",    "= 3.1.7"  # ruty-test-unit    https://packages.debian.org/stretch/ruby-test-unit
+  spec.add_development_dependency "test-unit-rr", "= 1.0.5"  # ruty-test-unit-rr https://packages.debian.org/stretch/ruby-test-unit
 
-  spec.add_dependency "rugged",   "= 0.24.0"            # ruby-rugged   https://packages.debian.org/stretch/ruby-rugged
-  spec.add_dependency "nokogiri", "= 1.6.8.1"           # ruby-nokogiri https://packages.debian.org/stretch/ruby-nokogiri
+  spec.add_dependency "rouge",    "= 2.0.2"                  # ruby-rouge        https://packages.debian.org/stretch/ruby-rouge
+  spec.add_dependency "rugged",   "= 0.24.0"                 # ruby-rugged       https://packages.debian.org/stretch/ruby-rugged
+  spec.add_dependency "nokogiri", "= 1.6.8.1"                # ruby-nokogiri     https://packages.debian.org/stretch/ruby-nokogiri
   # It can't use ruby-org package in the debian.
   # Because there are too many commits between the master branch and the tag which the package points.
   spec.add_dependency "org-ruby", "~> 0.9"
