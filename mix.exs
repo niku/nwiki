@@ -26,7 +26,8 @@ defmodule Nwiki.MixProject do
       {:dialyxir, "~> 1.0.0-rc.7", only: :dev, runtime: false},
       {:credo, "~> 1.1", only: :dev, runtime: false},
       {:earmark, "~> 1.4"},
-      {:earmark_hashed_link, github: "niku/earmark_hashed_link"}
+      {:earmark_hashed_link, github: "niku/earmark_hashed_link"},
+      {:earmark_raw_html, github: "niku/earmark_raw_html"}
     ]
   end
 end

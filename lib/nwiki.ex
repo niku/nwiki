@@ -120,8 +120,13 @@ defmodule Nwiki do
   Parses markdown
   """
   def parse(markdown) when is_binary(markdown) do
-    {:ok, ast, []} = Earmark.as_ast(markdown)
-    hashed_link_added_ast = EarmarkHashedLink.add_hashed_link(ast)
+    {:ok, ast, []} = Earmark.as_ast(markdown, pure_links: false)
+
+    hashed_link_added_ast =
+      ast
+      |> EarmarkHashedLink.add_hashed_link()
+      |> EarmarkRawHtml.melt_raw_html_into_ast()
+
     {:ok, hashed_link_added_ast}
   end
 
