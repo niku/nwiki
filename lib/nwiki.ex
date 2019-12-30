@@ -13,6 +13,8 @@ defmodule Nwiki do
     solarized_dark_css_path = Path.join(["assets", "css", "solarized-dark.css"])
     highlight_pack_js_path = Path.join(["assets", "js", "highlight.pack.js"])
     article_html_eex = Path.join(["templates", "article.html.eex"])
+    index_html_eex = Path.join(["templates", "index.html.eex"])
+    wiki_title = "nikulog"
 
     files =
       input_path
@@ -83,12 +85,21 @@ defmodule Nwiki do
           body: body,
           links: links,
           linked: linked,
-          ga_tracking_id: nil,
-          htmlize: fn path -> path <> ".html" end
+          ga_tracking_id: nil
         )
 
       File.write!(write_path <> ".html", html)
     end)
+
+    index_html =
+      EEx.eval_file(index_html_eex,
+        title: wiki_title,
+        description: "",
+        body: entries,
+        ga_tracking_id: nil
+      )
+
+    File.write!(Path.join(output_path, "index.html"), index_html)
 
     others
     |> Enum.each(fn path ->
