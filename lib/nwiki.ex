@@ -66,6 +66,10 @@ defmodule Nwiki do
         all_links
         |> Map.get(url, Map.new())
         |> Map.keys()
+        |> Enum.filter(fn
+          %URI{host: nil} -> true
+          _ -> false
+        end)
 
       linked =
         all_linked
